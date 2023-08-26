@@ -1,0 +1,33 @@
+
+{
+	// "font_face":"Meslo LG S",
+	// "font_face":"Cascadia Mono PL",
+	// "font_face":"JetBrains Mono",
+	"font_face":"MesloLGS Nerd Font Regular",
+	// "font_face":"Fira Code",
+	"font_size":18,
+	"ignored_packages": [],
+	"highlight_line":true,
+	"highlight_modified_tabs":true,
+
+	// "caret_style": "blink",
+	"caret_style":"smooth",
+
+	"bold_folder_labels":true,
+	
+	"auto_complete_delay":20,
+	"relative_line_numbers":true,
+	"show_encoding":true,
+	"show_line_endings": true,
+	"vintage_start_in_command_mode":true,
+
+	// 缩进线
+	"indent_guide_options": ["draw_active"],
+
+	// 关闭多出的标题栏
+	"gtk_client_side_window_decorations": false,
+	
+
+	
+}
+
