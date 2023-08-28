@@ -38,7 +38,7 @@ if [ $subl_pid_count -gt 0 ];then
   # 关闭 sublime_text 进程
   echo -e "\e[96m Sublime Text已经启动，现先将其关闭...\n \e[0m"
   kill $subl_pid 
-  sleep 5
+  sleep 3
 
 fi
 

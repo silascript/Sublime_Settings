@@ -15,7 +15,7 @@ echo -e "\e[96m 初始化完成！\n \e[0m"
 #subl_ps_count=`ps -ef|grep 'sublime_text'|grep -v grep|wc -l`
 subl_ps_count=`pgrep 'sublime_text' -l|wc -l`
 
-echo $subl_ps_count
+#echo $subl_ps_count
 
 if [ $subl_ps_count -gt 0 ];then
 

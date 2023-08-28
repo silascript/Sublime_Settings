@@ -9,7 +9,7 @@
 echo -e "\e[96m 开始对 SublimeText 基础化配置...\n \e[0m"
 
 # 初始化
-source ./subl_init.sh
+source ./subl_init_main.sh
 
 
 # 安装插件
