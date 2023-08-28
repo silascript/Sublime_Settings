@@ -9,8 +9,14 @@
 # 		  全局变量区
 # -------------------------------------------------- #
 
+# 缓存目录
 cachedir=".Cache"
 
+# 包目录
+packages_path=~/.config/sublime-text/Packages
+installed_packages_path=~/.config/sublime-text/'Installed Packages'
+
+# 当前路径 脚本所在的路径
 setting_sh_root=$PWD
 
 #----------------------------------------------------#
@@ -97,13 +103,24 @@ function buildPackage(){
       echo -e "\e[96m $repoName 开始构建 sublime-package 包...\n \e[0m"
 
       # 构建 sublime-package
-      
-      echo $PWD
+      #echo $PWD
 
       # 进入到.Cache目录
       # 为下载github库作准备
-      #cd $cachedir
-
+      cd $repo_path
+     
+      # 如果存在.git目录，就删掉 
+      git_dir=.git
+      if [ -d "$git_dir" ];then
+	echo -e "\e[96m 删除\e[93m $git_dir\n \e[0m"
+	rm -rf .git
+      fi      
+	
+      # 将当成目录中所有文件都打包成 zip
+      echo -e "\e[96m 打包... \n \e[0m"
+      zip -q -r $repoName *
+      # 移动到 Sublime Packages目录
+      mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
     else
       echo -e "\e[92m 下载存在问题! \e[0m"
     fi

@@ -3,9 +3,11 @@
 #		Sublime Text 初始化脚本			      #
 #-------------------------------------------------------------#
 
+# 重置
+source ./subl_reset_main.sh
 
+# 初始化
 source ./subl_init_main.sh
-
 
 echo -e "\e[96m 初始化完成！\n \e[0m"
 
