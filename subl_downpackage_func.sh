@@ -1,6 +1,6 @@
 
 # -------------------------------------------------- #
-# 			下载包脚本
+# 		下载安装插件包函数脚本
 # -------------------------------------------------- #
 
 
@@ -78,10 +78,20 @@ function download_by_github_address(){
     git clone $1 $2
 }
 
+# github release 包下载
+function download_by_release_address(){
 
-# 构建 sublime-package 包 
+  # $1包地址
+  # $2下载到哪个目录
+  wget $1 -P $2
 
-function buildPackage(){
+}
+
+
+
+# 通过 Github 库 构建 sublime-package 包 
+
+function buildPackage_githubRepo(){
   
   # github 库的地址
   github_addrs=$1
@@ -136,6 +146,92 @@ function buildPackage(){
 }
 
 
+# 构建 ChineseLocalization 包
+# 因为 这个包github库与release包结构存在差异
+# 并且github库构建的sublime-package包在使用时效果不理想
+# 所以使用release包来构建
+function buildChineseLocalization(){
+
+  # release 包地址 
+  release_addrs=$1 
+  
+  # 从下载地址获取包名  
+  zipName=$(getRepoName $release_addrs)
+
+  # 下载后的包路径
+  repo_path=$cachedir/$zipName
+  
+  # 通过路径判断.Cache下是否已经下载了包
+  # 不存在就下载
+  if [ ! -f "$repo_path" ];then
+    echo -e "\e[96m 开始下载...\n \e[0m"
+    # 下载
+    download_by_release_address $release_addrs $cachedir
+
+    # 获取判断是否下载成功
+    if [ $? -eq 0 ];then
+      echo -e "\e[96m \e[92m$zipName \e[96m下载成功！\n \e[0m"
+    else
+      echo -e "\e[96m \e[93m$zipName \e[96m下载失败！\n \e[0m"
+    fi
+  fi
+  
+  #ls -al $cachedir
+
+  # 解压 
+  # 获取 压缩包内文件列表
+  # 主要取解压后的目录名
+  unzip_dir=`unzip -l $repo_path|awk 'NR==5{print $NF}'`
+  
+  #echo $unzip_dir
+  
+  # 使用空格替换横杠作为分隔符，以此将字符串分割成数组
+  uz_arr=(${unzip_dir//-// })
+
+  # 取第一个元素
+  # 这是 sublime-package 包的名称
+  sublpk_name=${uz_arr[0]}
+  # 把最后的斜杠 / 去除
+  sublpk_name=${sublpk_name%/*}
+
+  #echo $sublpk_name
+
+  # 开始解压
+  echo -e "\e[96m 开始解压 \e[92m$zipName \e[96m...\n \e[0m"
+  unzip  $repo_path -d $cachedir
+  #echo $pk_name
+  
+  if [ -d "$cachedir/$unzip_dir" ];then
+    echo -e "\e[96m \e[92m$zipName \e[96m解压成功！\n \e[0m"
+  else
+    echo -e "\e[93m $zipName 解压失败！\n \e[0m"
+  fi
+	
+  #ls -al $cachedir
+
+  # 构建 sublime-package
+  echo -e "\e[96m 开始构建 sublime-package 包...\n \e[0m"
+  # 压包
+  # 跳转到解压后的目录
+  cd $cachedir/$unzip_dir
+  echo -e "\e[96m 开始打包... \e[0m"
+  zip -r -q $sublpk_name  *
+  # 将压缩包移到 ~/.config/sublime-text/Installed Packages
+  if [ -f "$sublpk_name.zip" ];then
+    echo -e "\e[96m 移动 \e[92m'$sublpk_name.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
+    mv "$sublpk_name.zip" "$installed_packages_path/"$sublpk_name.sublime-package
+  else
+    echo -e "\e[96m 没找到 \e[93m'$sublpk_name.zip' \n \e[0m"
+  fi
+
+  #ls -al $cachedir
+  #echo $cachedir/$pk_name
+
+
+}
+
+
+
 # 安装插件
 
 function install_package(){
@@ -154,17 +250,26 @@ function install_package(){
 #		  	测试区
 #----------------------------------------------------#
 
-# 下载包
-
+# github reop 地址
 #addrs="https://github.com/rexdf/ChineseLocalization"
-addrs="https://github.com/rexdf/ChineseLocalization.git"
+#addrs="https://github.com/rexdf/ChineseLocalization.git"
 
 
 # 生成.Cache 目录
 #createCacheDir $cachedir
 
 # 安装插件包
-install_package $addrs
+#install_package $addrs
+#
+
+# ------------------------------------------------- #
+
+
+# 中文语言包下载地址
+#chl_addrs="https://github.com/rexdf/ChineseLocalization/archive/refs/tags/st3-1.11.7.zip"
+
+#buildChineseLocalization $chl_addrs
+
 
 #----------------------------------------------------#
 
