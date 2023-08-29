@@ -44,6 +44,7 @@ function createCacheDir(){
 
 # 从仓库地址获取仓库名
 # 主要用于获取下载下来github项目的目录名
+
 function getRepoName(){
 
   # github 仓库地址
@@ -69,6 +70,7 @@ function getRepoName(){
 
 
 # 通过github地址下载
+
 function download_by_github_address(){
     # 下载
     # 第一个参数是github地址
@@ -78,8 +80,8 @@ function download_by_github_address(){
 
 
 # 构建 sublime-package 包 
+
 function buildPackage(){
-  
   
   # github 库的地址
   github_addrs=$1
@@ -118,9 +120,12 @@ function buildPackage(){
 	
       # 将当成目录中所有文件都打包成 zip
       echo -e "\e[96m 打包... \n \e[0m"
-      zip -q -r $repoName *
+      zip -r -q $repoName ./*
+      ls -al
       # 移动到 Sublime Packages目录
-      mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
+      #mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
+      # 跳回 Sublime_Settings根目录
+      #cd -
     else
       echo -e "\e[92m 下载存在问题! \e[0m"
     fi
@@ -130,8 +135,23 @@ function buildPackage(){
   fi
 }
 
+
+# 安装插件
+
+function install_package(){
+
+  # 包地址
+  paddrs=$1
+
+  # 下载及构建
+  buildPackage $paddrs
+
+
+}
+
+
 #----------------------------------------------------#
-#			主代码区
+#		  	测试区
 #----------------------------------------------------#
 
 # 下载包
@@ -141,11 +161,10 @@ addrs="https://github.com/rexdf/ChineseLocalization.git"
 
 
 # 生成.Cache 目录
-createCacheDir $cachedir
+#createCacheDir $cachedir
 
-# 下载及构建
-buildPackage $addrs
-
+# 安装插件包
+install_package $addrs
 
 #----------------------------------------------------#
 

@@ -9,8 +9,6 @@
 
 # ------------------------------------------------------------------ #
 
-#检测目录
-subldir=~/.config/sublime-text/'Installed Packages'
 
 # ----------------------------函数区-------------------------------- #
 
@@ -33,6 +31,9 @@ function subl_cp_settings(){
 # 安装 Package Control
 function install_packagecontrol(){
 
+  #检测目录
+  subldir=~/.config/sublime-text/'Installed Packages'
+  # Package Control 包路径
   pcfile=$subldir/'Package Control.sublime-package'
   #echo $pcfile
 
@@ -46,7 +47,7 @@ function install_packagecontrol(){
 
     #wget -P ~/.config/sublime-text/Installed\ Packages/ 'https://packagecontrol.io/Package Control.sublime-package'
 
-    wget -P "$subldir/" 'https://packagecontrol.io/Package Control.sublime-package'
+    wget -P "$subldir" 'https://packagecontrol.io/Package Control.sublime-package'
 
   else
     echo -e "\e[92m Package Control 已经安装了！\n \e[0m"

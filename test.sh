@@ -1,4 +1,7 @@
 
+# ---------------------------------------------------------------
+# 				测试
+# ---------------------------------------------------------------
 
 
 #s1="https://github.com/rexdf/ChineseLocalization"
@@ -15,24 +18,31 @@
 # ---------------------------------------------------------------
 
 
-s1="https://github.com/rexdf/ChineseLocalization.git"
-s2="https://github.com/rexdf/ChineseLocalization"
+#s1="https://github.com/rexdf/ChineseLocalization.git"
+#s2="https://github.com/rexdf/ChineseLocalization"
 
 # 从左向右取第一个.后的字符串
 # 即取到的是 com/rexdf/ChineseLocalization.git
-echo "${s1#*.}"
+#echo "${s1#*.}"
 
 # 从左向右取最后一个.后的字符串
 # 即取到的是 git
-echo "${s1##*.}"
+#echo "${s1##*.}"
 
 # 从右向左取.后的第一个字符串
 # 即取到的是 https://github.com/rexdf/ChineseLocalization
-echo "${s1%.*}"
+#echo "${s1%.*}"
 
 # 从右向左取最后一个.后的字符串
 # 取到的是 http://github
-echo "${s1%%.*}"
+#echo "${s1%%.*}"
+
+
+# ---------------------------------------------------------------
+
+# 读取文件
+
+
 
 
 

@@ -1,0 +1,2 @@
+https://github.com/SublimeText/AFileIcon/releases/download/3.24.1/A.File.Icon.sublime-package
+
