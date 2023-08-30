@@ -285,13 +285,24 @@ function install_package_sbpk(){
   # 使用空格替换斜杠作为分隔符，以此将字符串分割成数组
   arr_addrs=(${pk_addrs//\// })
 
+  # 文件名称
   # 取最后一个元素
   # 取最后一个元素的索引
   sbpk_name=${arr_addrs[-1]}
 
   if [ ${pk_addrs##*.}x = "sublime-package"x ];then
-    echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
-    download_by_release_address $pk_addrs $cachedir
+    
+    
+    # 处理 A File Icon这个特殊的插件
+    if [ "$sbpk_name" == "A.File.Icon.sublime-package" ];then
+      sbpk_name="A File Icon.sublime-package"   
+      echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+      wget $pk_addrs -O "$cachedir/$sbpk_name"
+    else
+      echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+      download_by_release_address $pk_addrs $cachedir
+    fi
+
     #wget $pkaddrs -P $cachedir
     echo -e "\e[96m 开始移动 \e[92m$sbpk_name \e[96m至 \e[92m$installed_packages_path \e[96m目录...\n \e[0m"
     mv "$cachedir/$sbpk_name" "$installed_packages_path"
@@ -373,9 +384,9 @@ function install_package_by_addrfile(){
 
 #----------------------------------------------------#
 # 测试批量安装插件
-#addr_file=basic_packages.txt
+addr_file=basic_packages.txt
 
-#install_package_by_addrfile $addr_file
+install_package_by_addrfile $addr_file
 
 
 
