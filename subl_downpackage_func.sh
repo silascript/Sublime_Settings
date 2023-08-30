@@ -40,7 +40,6 @@ function createCacheDir(){
 
 # 从仓库地址获取仓库名
 # 主要用于获取下载下来github项目的目录名
-
 function getRepoName(){
 
   # github 仓库地址
@@ -66,7 +65,6 @@ function getRepoName(){
 
 
 # 通过github地址下载
-
 function download_by_github_address(){
     # 下载
     # 第一个参数是github地址
@@ -75,6 +73,8 @@ function download_by_github_address(){
 }
 
 # github release 包下载
+# 第一个参数是下载地址
+# 第二个参数是存储目录
 function download_by_release_address(){
 
   # $1包地址
@@ -86,7 +86,6 @@ function download_by_release_address(){
 
 
 # 通过 Github 库 构建 sublime-package 包 
-
 function buildPackage_githubRepo(){
   
   # 缓存目录
@@ -137,6 +136,7 @@ function buildPackage_githubRepo(){
       #ls -al
       # 移动到 Sublime Packages目录
       if [ -f "$repoName.zip" ];then
+	echo -e "\e[96m移动 \e[92m'$repoName.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录... \n \e[0m"
         mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
       fi
       # 跳回 Sublime_Settings根目录
@@ -154,11 +154,11 @@ function buildPackage_githubRepo(){
 }
 
 
-# 构建 ChineseLocalization 包
+# 使用release zip 包来构建
+# 如 ChineseLocalization 包
 # 因为 这个包github库与release包结构存在差异
 # 并且github库构建的sublime-package包在使用时效果不理想
-# 所以使用release包来构建
-function buildChineseLocalization(){
+function buildPackage_zip(){
 
   # 缓存目录
   cachedir=".Cache"
@@ -248,14 +248,82 @@ function buildChineseLocalization(){
 }
 
 
-# 安装插件
-
-function install_package(){
+# 通过github地址安装插件
+function install_package_github(){
   # 包地址
   paddrs=$1
 
   # 下载及构建
   buildPackage_githubRepo $paddrs
+
+}
+
+# 安装zip插件
+function install_package_zip(){
+  # zip 包地址
+  zip_addrs=$1
+
+  # 下载构建
+  buildPackage_zip $zip_addrs
+
+}
+
+# 安装sublime-package插件
+# 如果是sublime-package格式
+# 直接把包移到~/.config/sublime-text/Intalled Package/目录
+function install_package_sbpk(){
+
+  # 缓存目录
+  cachedir=".Cache"
+
+  # 包目录
+  packages_path=~/.config/sublime-text/Packages
+  installed_packages_path=~/.config/sublime-text/'Installed Packages'
+
+  pk_addrs=$1
+
+  # 使用空格替换斜杠作为分隔符，以此将字符串分割成数组
+  arr_addrs=(${pk_addrs//\// })
+
+  # 取最后一个元素
+  # 取最后一个元素的索引
+  sbpk_name=${arr_addrs[-1]}
+
+  if [ ${pk_addrs##*.}x = "sublime-package"x ];then
+    echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+    download_by_release_address $pk_addrs $cachedir
+    #wget $pkaddrs -P $cachedir
+    echo -e "\e[96m 开始移动 \e[92m$sbpk_name \e[96m至 \e[92m$installed_packages_path \e[96m目录...\n \e[0m"
+    mv "$cachedir/$sbpk_name" "$installed_packages_path"
+  fi
+
+}
+
+
+
+
+# 读取地址文件批量安装
+function install_package_by_addrfile(){
+  
+  # 文件名
+  addr_file=$1
+
+  echo -e "\e[96m开始读取 \e[92m$addr_file \e[96m批量安装插件...\n \e[0m"
+
+  cat $addr_file | while read line
+  do
+    pk_addrs=$line
+
+    # 判断是不是zip包
+    # 地址不同，使用不同的下载构建函数
+    if [ ${pk_addrs##*.}x = "zip"x ];then
+      install_package_zip $pk_addrs
+    elif [ ${pk_addrs##*.}x = "sublime-package"x ];then
+      install_package_sbpk $pk_addrs
+    else
+      install_package_github $pk_addrs
+    fi
+  done
 
 }
 
@@ -267,6 +335,7 @@ function install_package(){
 # github reop 地址
 #addrs="https://github.com/titoBouzout/SideBarEnhancements"
 #addrs="https://github.com/titoBouzout/SideBarEnhancements.git"
+#addrs="https://github.com/NeoVintageous/NeoVintageous"
 
 
 # 生成.Cache 目录
@@ -282,10 +351,33 @@ function install_package(){
 # 中文语言包下载地址
 #chl_addrs="https://github.com/rexdf/ChineseLocalization/archive/refs/tags/st3-1.11.7.zip"
 
-#buildChineseLocalization $chl_addrs
 
 
 #----------------------------------------------------#
+
+#for line in `cat basic_packages.txt`
+#do
+#  echo $line
+#done
+
+#cat basic_packages.txt | while read line
+#do
+#  echo $line
+#done
+
+#while read line
+#do
+#  echo $line
+#done < basic_packages.txt
+
+
+#----------------------------------------------------#
+# 测试批量安装插件
+#addr_file=basic_packages.txt
+
+#install_package_by_addrfile $addr_file
+
+
 
 
 

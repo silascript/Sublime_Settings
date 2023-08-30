@@ -1,2 +1,5 @@
+https://github.com/NeoVintageous/NeoVintageous
+https://github.com/gerardroche/NeoVintageousHighlightLine
 https://github.com/SublimeText/AFileIcon/releases/download/3.24.1/A.File.Icon.sublime-package
 https://github.com/titoBouzout/SideBarEnhancements
+https://github.com/emmetio/sublime-text-plugin
