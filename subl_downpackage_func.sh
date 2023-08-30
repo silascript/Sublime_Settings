@@ -9,13 +9,6 @@
 # 		  全局变量区
 # -------------------------------------------------- #
 
-# 缓存目录
-cachedir=".Cache"
-
-# 包目录
-packages_path=~/.config/sublime-text/Packages
-installed_packages_path=~/.config/sublime-text/'Installed Packages'
-
 # 当前路径 脚本所在的路径
 setting_sh_root=$PWD
 
@@ -29,6 +22,9 @@ setting_sh_root=$PWD
 # 生成缓存目录
 function createCacheDir(){
    
+  # 缓存目录
+  cachedir=".Cache"
+
   subl_cdir=$1
   
   # 检测缓存目录是否已经存在
@@ -93,6 +89,13 @@ function download_by_release_address(){
 
 function buildPackage_githubRepo(){
   
+  # 缓存目录
+  cachedir=".Cache"
+
+  # 包目录
+  packages_path=~/.config/sublime-text/Packages
+  installed_packages_path=~/.config/sublime-text/'Installed Packages'
+
   # github 库的地址
   github_addrs=$1
 
@@ -131,11 +134,16 @@ function buildPackage_githubRepo(){
       # 将当成目录中所有文件都打包成 zip
       echo -e "\e[96m 打包... \n \e[0m"
       zip -r -q $repoName ./*
-      ls -al
+      #ls -al
       # 移动到 Sublime Packages目录
-      #mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
+      if [ -f "$repoName.zip" ];then
+        mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
+      fi
       # 跳回 Sublime_Settings根目录
-      #cd -
+      cd $setting_sh_root 
+      # 删除项目目录
+      echo -e "\e[96m 删除 \e[93m $repo_path \e[96m目录...\n \e[0m"
+      rm -rf $repo_path 
     else
       echo -e "\e[92m 下载存在问题! \e[0m"
     fi
@@ -151,6 +159,13 @@ function buildPackage_githubRepo(){
 # 并且github库构建的sublime-package包在使用时效果不理想
 # 所以使用release包来构建
 function buildChineseLocalization(){
+
+  # 缓存目录
+  cachedir=".Cache"
+
+  # 包目录
+  packages_path=~/.config/sublime-text/Packages
+  installed_packages_path=~/.config/sublime-text/'Installed Packages'
 
   # release 包地址 
   release_addrs=$1 
@@ -211,7 +226,6 @@ function buildChineseLocalization(){
 
   # 构建 sublime-package
   echo -e "\e[96m 开始构建 sublime-package 包...\n \e[0m"
-  # 压包
   # 跳转到解压后的目录
   cd $cachedir/$unzip_dir
   echo -e "\e[96m 开始打包... \e[0m"
@@ -220,6 +234,10 @@ function buildChineseLocalization(){
   if [ -f "$sublpk_name.zip" ];then
     echo -e "\e[96m 移动 \e[92m'$sublpk_name.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
     mv "$sublpk_name.zip" "$installed_packages_path/"$sublpk_name.sublime-package
+    # 删除解压的目录
+    cd $setting_sh_root 
+    echo -e "\e[96m 删除 \e[92m'$cachedir/$unzip_dir' \e[96m目录... \n \e[0m"
+    rm -rf $cachedir/$unzip_dir
   else
     echo -e "\e[96m 没找到 \e[93m'$sublpk_name.zip' \n \e[0m"
   fi
@@ -227,21 +245,17 @@ function buildChineseLocalization(){
   #ls -al $cachedir
   #echo $cachedir/$pk_name
 
-
 }
-
 
 
 # 安装插件
 
 function install_package(){
-
   # 包地址
   paddrs=$1
 
   # 下载及构建
-  buildPackage $paddrs
-
+  buildPackage_githubRepo $paddrs
 
 }
 
@@ -251,8 +265,8 @@ function install_package(){
 #----------------------------------------------------#
 
 # github reop 地址
-#addrs="https://github.com/rexdf/ChineseLocalization"
-#addrs="https://github.com/rexdf/ChineseLocalization.git"
+#addrs="https://github.com/titoBouzout/SideBarEnhancements"
+#addrs="https://github.com/titoBouzout/SideBarEnhancements.git"
 
 
 # 生成.Cache 目录
