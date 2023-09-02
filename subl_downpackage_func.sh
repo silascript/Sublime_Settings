@@ -324,6 +324,12 @@ function install_package_by_addrfile(){
   cat $addr_file | while read line
   do
     pk_addrs=$line
+	
+	# 判断是否以#符号起始
+	# 以#符号起始视为注释该行插件
+	if [ ${pk_addrs:0:1}x == "#"x ];then
+		continue
+	fi
 
     # 判断是不是zip包
     # 地址不同，使用不同的下载构建函数
