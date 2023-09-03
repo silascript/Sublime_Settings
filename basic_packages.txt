@@ -5,4 +5,5 @@ https://github.com/SublimeText/AFileIcon/releases/download/3.24.1/A.File.Icon.su
 #https://github.com/titoBouzout/SideBarEnhancements
 https://github.com/braver/SideBarTools
 https://github.com/emmetio/sublime-text-plugin
+https://github.com/karimlevallois/gruvbox-material-sublime-text
 
