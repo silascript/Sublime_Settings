@@ -31,7 +31,7 @@ echo -e "\e[96m暂时关闭 Sublimet Text 以方便下面的操作... \n \e[0m"
 subl_close
 
 # 复制 settings
-subl_cp_settings basic_settings.json
+subl_cp_settings basic_gruvbox_settings.json
 
 # 安装 Package Control
 install_packagecontrol
