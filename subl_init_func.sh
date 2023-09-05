@@ -14,17 +14,25 @@
 
 # 复制 Preferences.sublime-settings
 function subl_cp_settings(){
+	
+	# settings 路径
+	settings_path=$1	
+	# 复制 settings
+	echo -e "\e[96m开始复制 settings...\n \e[0m"
+	# 检测 settings 文件是否存在
+	if [ -f $settings_path ];then
 
-  # 复制 settings
-  echo -e "\e[96m 复制 settings! \e[0m"
-  echo -e "\e[96m 如果已存在的 settings，将会被覆盖...\n \e[0m"
-  cp -f -v ./base_settings.json ~/.config/sublime-text/Packages/User/Preferences.sublime-settings 
+		echo -e "\e[96m 如果已存在的 settings，将会被覆盖...\n \e[0m"
+		cp -f -v $settings_path ~/.config/sublime-text/Packages/User/Preferences.sublime-settings 
 
-  if [ $? == 0 ];then
-    echo -e "\e[92m \e[37m \n Preferences.sublime-settings \e[92m复制成功！\n \e[0m"
-  else
-    echo -e "\e[91m \e[37m \n Preferences.sublime-settings \e[91m复制失败！\n \e[0m"
-  fi
+		if [ $? == 0 ];then
+		echo -e "\e[92m \e[37m \n Preferences.sublime-settings \e[92m复制成功！\n \e[0m"
+		else
+		echo -e "\e[91m \e[37m \n Preferences.sublime-settings \e[91m复制失败！\n \e[0m"
+		fi
+	else
+		echo -e "\e[92m $settings_path \e[96m不存在！\n \e[0m"
+	fi
 
 }
 

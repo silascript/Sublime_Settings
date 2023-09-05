@@ -32,7 +32,7 @@ function delete_subl_dir(){
     echo -e "\e[33m \e[37m$sublcachedir \e[93m目录不存在！\e[0m"
   else
     # 删除 ~/.cache/sublime-text
-    rm -rvf $sublcachedir
+    sudo rm -rvf $sublcachedir
   fi
 }
 
