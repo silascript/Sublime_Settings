@@ -33,6 +33,18 @@ subl_close
 # 复制 settings
 subl_cp_settings
 
+# 安装 Package Control
+install_packagecontrol
+
+
+# 重启
+subl_restart
+
+# 关闭 Sublime Text
+sleep 5
+echo -e "\e[96m暂时关闭 Sublimet Text 并开始进行批量插件安装... \n \e[0m"
+subl_close
+
 # 读取插件地址文件安装插件
 addr_file=lsp_packages.txt
 

@@ -13,10 +13,12 @@ https://github.com/SublimeText/Terminal
 
 #LSP
 https://github.com/sublimelsp/LSP
+https://github.com/sublimelsp/LSP-file-watcher-chokidar
 https://github.com/sublimelsp/LSP-json
 https://github.com/sublimelsp/LSP-clangd
 https://github.com/sublimelsp/LSP-html
 https://github.com/sublimelsp/LSP-typescript
+https://github.com/sublimelsp/LSP-bash
 https://github.com/sublimelsp/LSP-lua
 https://github.com/sublimelsp/LSP-gopls
 https://github.com/sublimelsp/LSP-rust-analyzer
