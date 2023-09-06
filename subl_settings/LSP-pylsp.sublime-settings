@@ -1,0 +1,7 @@
+// Settings in here override those in "LSP-pylsp/LSP-pylsp.sublime-settings"
+
+{
+	"pylsp.plugins.pycodestyle.enabled": false,
+	"pylsp.plugins.ruff.enabled": true,	
+	"pylsp.plugins.pylsp_black.enabled":true,
+}

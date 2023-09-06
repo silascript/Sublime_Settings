@@ -26,7 +26,10 @@
 	],
 	// 关闭多出的标题栏
 	"gtk_client_side_window_decorations": false,
+	// neovintageous
 	"neovintageous_build_version": 13200,
+	"vintageous_highlighted_yank_duration":1500,
+	"vintageous_highlighted_yank_style":"outline",
 	"theme": "gruvbox.sublime-theme",
 	"color_scheme": "gruvbox (Dark) (Medium).sublime-color-scheme",
 	"gruvbox_accent_aqua": true,

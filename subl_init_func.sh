@@ -17,14 +17,17 @@ function subl_cp_settings(){
 	
 	# settings 路径
 	settings_path=$1	
+	
+	# 目标settings 路径
+	target_settings_path=$2
+
 	# 复制 settings
 	echo -e "\e[96m开始复制 settings...\n \e[0m"
 	# 检测 settings 文件是否存在
 	if [ -f $settings_path ];then
 
 		echo -e "\e[96m 如果已存在的 settings，将会被覆盖...\n \e[0m"
-		cp -f -v $settings_path ~/.config/sublime-text/Packages/User/Preferences.sublime-settings 
-
+		cp -f -v $settings_path $target_settings_path
 		if [ $? == 0 ];then
 		echo -e "\e[92m \e[37m \n Preferences.sublime-settings \e[92m复制成功！\n \e[0m"
 		else
@@ -35,6 +38,21 @@ function subl_cp_settings(){
 	fi
 
 }
+
+# 复制全局默认配置
+# 默认的 Preferences.sublime-settings 配置
+function subl_cp_global_defualt_settings(){
+
+	# 源
+	s_settings_path=./subl_settings/default_settings.sublime-settings
+
+	# 目标
+	t_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+
+	subl_cp_settings $s_settings_path $t_settings_path
+
+} 
+
 
 # 安装 Package Control
 function install_packagecontrol(){

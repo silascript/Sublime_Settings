@@ -44,8 +44,10 @@ subl_close
 addr_file=basic_packages.txt
 install_package_by_addrfile $addr_file
 
-# 复制 settings
-subl_cp_settings basic_gruvbox_settings.json
+# 复制 basic settings
+s_setings_path=./subl_settings/basic_gruvbox_settings.sublime-settings
+t_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+subl_cp_settings $s_setings_path $t_settings_path
 
 # 重启Sublime Text
 subl_restart

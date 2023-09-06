@@ -20,13 +20,14 @@ https://github.com/sublimelsp/LSP-clangd
 https://github.com/sublimelsp/LSP-html
 https://github.com/sublimelsp/LSP-css
 https://github.com/sublimelsp/LSP-typescript
+https://github.com/sublimelsp/LSP-eslint
 https://github.com/sublimelsp/LSP-bash
 https://github.com/sublimelsp/LSP-lua
 https://github.com/sublimelsp/LSP-gopls
 https://github.com/sublimelsp/LSP-rust-analyzer
 https://github.com/sublimelsp/LSP-pyright
 #https://github.com/sublimelsp/LSP-pylsp
-#https://github.com/sublimelsp/LSP-ruff
+https://github.com/sublimelsp/LSP-ruff
 https://github.com/sublimelsp/LSP-yaml
 
 

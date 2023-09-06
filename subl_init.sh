@@ -17,8 +17,9 @@ source ./subl_init_func.sh
 # 重置
 resetAll
 
-# 复制 settings
-subl_cp_settings default_settings.json
+# 复制 全局默认 settings
+# subl_cp_settings default_settings.json
+subl_cp_global_defualt_settings
 
 # 安装 Package Control
 install_packagecontrol
