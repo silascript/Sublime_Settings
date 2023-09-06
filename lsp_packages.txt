@@ -9,6 +9,7 @@ https://github.com/Briles/gruvbox
 #https://github.com/karimlevallois/gruvbox-material-sublime-text
 https://github.com/randy3k/Terminus
 https://github.com/SublimeText/Terminal
+https://github.com/SublimeText/Less
 
 
 #LSP
@@ -17,6 +18,7 @@ https://github.com/sublimelsp/LSP-file-watcher-chokidar
 https://github.com/sublimelsp/LSP-json
 https://github.com/sublimelsp/LSP-clangd
 https://github.com/sublimelsp/LSP-html
+https://github.com/sublimelsp/LSP-css
 https://github.com/sublimelsp/LSP-typescript
 https://github.com/sublimelsp/LSP-bash
 https://github.com/sublimelsp/LSP-lua

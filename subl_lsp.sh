@@ -30,12 +30,8 @@ sleep 5
 echo -e "\e[96m暂时关闭 Sublimet Text 以方便下面的操作... \n \e[0m"
 subl_close
 
-# 复制 settings
-subl_cp_settings
-
 # 安装 Package Control
 install_packagecontrol
-
 
 # 重启
 subl_restart
@@ -50,6 +46,8 @@ addr_file=lsp_packages.txt
 
 install_package_by_addrfile $addr_file
 
+# 复制 settings
+subl_cp_settings lsp_settings.json
 
 # 重启Sublime Text
 subl_restart

@@ -10,3 +10,5 @@ https://github.com/Briles/gruvbox
 #https://github.com/poucotm/Guna
 https://github.com/randy3k/Terminus
 https://github.com/SublimeText/Terminal
+#https://github.com/SublimeText/Less/releases/download/3.0.3/Less-3.0.3-st4149.sublime-package
+https://github.com/SublimeText/Less
