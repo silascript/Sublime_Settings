@@ -47,7 +47,17 @@ addr_file=lsp_packages.txt
 install_package_by_addrfile $addr_file
 
 # 复制 settings
-subl_cp_settings lsp_settings.json
+s_settings_path=./subl_settings/lsp_settings.sublime-settings
+t_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+
+s_py_settings_path=./subl_settings/Python.sublime-settings
+t_py_settings_path=~/.config/sublime-text/Packages/User/Python.sublime-settings
+
+# Preferences settings
+subl_cp_settings $s_settings_path $t_settings_path
+# Python settings
+subl_cp_settings $s_py_settings_path $t_py_settings_path
+
 
 # 重启Sublime Text
 subl_restart

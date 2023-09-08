@@ -126,8 +126,8 @@ function buildPackage_githubRepo(){
       # 如果存在.git目录，就删掉 
       git_dir=.git
       if [ -d "$git_dir" ];then
-	echo -e "\e[96m 删除\e[93m $git_dir\n \e[0m"
-	rm -rf .git
+		echo -e "\e[96m 删除\e[93m $git_dir\n \e[0m"
+		rm -rf .git
       fi      
 	
       # 将当成目录中所有文件都打包成 zip
@@ -136,7 +136,7 @@ function buildPackage_githubRepo(){
       #ls -al
       # 移动到 Sublime Packages目录
       if [ -f "$repoName.zip" ];then
-	echo -e "\e[96m移动 \e[92m'$repoName.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录... \n \e[0m"
+		echo -e "\e[96m移动 \e[92m'$repoName.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录... \n \e[0m"
         mv "$repoName.zip" "$installed_packages_path/$repoName.sublime-package"
       fi
       # 跳回 Sublime_Settings根目录
@@ -145,12 +145,12 @@ function buildPackage_githubRepo(){
       echo -e "\e[96m 删除 \e[93m $repo_path \e[96m目录...\n \e[0m"
       rm -rf $repo_path 
     else
-      echo -e "\e[92m 下载存在问题! \e[0m"
-    fi
+		echo -e "\e[92m 下载存在问题! \e[0m"
+	fi
 
-  else
-    echo -e "\e[96m \e[93m$repoName \e[96m项目已下载！\e[0m"
-  fi
+	else
+		echo -e "\e[96m \e[93m$repoName \e[96m项目已下载！\e[0m"
+	fi
 }
 
 
@@ -160,88 +160,113 @@ function buildPackage_githubRepo(){
 # 并且github库构建的sublime-package包在使用时效果不理想
 function buildPackage_zip(){
 
-  # 缓存目录
-  cachedir=".Cache"
+	# 缓存目录
+	cachedir=".Cache"
 
-  # 包目录
-  packages_path=~/.config/sublime-text/Packages
-  installed_packages_path=~/.config/sublime-text/'Installed Packages'
+	# 包目录
+	packages_path=~/.config/sublime-text/Packages
+	installed_packages_path=~/.config/sublime-text/'Installed Packages'
 
-  # release 包地址 
-  release_addrs=$1 
+	# release 包地址 
+	release_addrs=$1 
   
-  # 从下载地址获取包名  
-  zipName=$(getRepoName $release_addrs)
+	# 从下载地址获取包名  
+	zipName=$(getRepoName $release_addrs)
 
-  # 下载后的包路径
-  repo_path=$cachedir/$zipName
+	# 下载后的包路径
+	repo_path=$cachedir/$zipName
   
-  # 通过路径判断.Cache下是否已经下载了包
-  # 不存在就下载
-  if [ ! -f "$repo_path" ];then
-    echo -e "\e[96m 开始下载...\n \e[0m"
-    # 下载
-    download_by_release_address $release_addrs $cachedir
+	# 通过路径判断.Cache下是否已经下载了包
+	# 不存在就下载
+	if [ ! -f "$repo_path" ];then
+		echo -e "\e[96m 开始下载...\n \e[0m"
+		# 下载
+		download_by_release_address $release_addrs $cachedir
 
-    # 获取判断是否下载成功
-    if [ $? -eq 0 ];then
-      echo -e "\e[96m \e[92m$zipName \e[96m下载成功！\n \e[0m"
-    else
-      echo -e "\e[96m \e[93m$zipName \e[96m下载失败！\n \e[0m"
-    fi
-  fi
+		# 获取判断是否下载成功
+		if [ $? -eq 0 ];then
+			echo -e "\e[96m \e[92m$zipName \e[96m下载成功！\n \e[0m"
+		else
+			echo -e "\e[96m \e[93m$zipName \e[96m下载失败！\n \e[0m"
+		fi
+	fi
   
-  #ls -al $cachedir
-
-  # 解压 
-  # 获取 压缩包内文件列表
-  # 主要取解压后的目录名
-  unzip_dir=`unzip -l $repo_path|awk 'NR==5{print $NF}'`
-  
-  #echo $unzip_dir
-  
-  # 使用空格替换横杠作为分隔符，以此将字符串分割成数组
-  uz_arr=(${unzip_dir//-// })
-
-  # 取第一个元素
-  # 这是 sublime-package 包的名称
-  sublpk_name=${uz_arr[0]}
-  # 把最后的斜杠 / 去除
-  sublpk_name=${sublpk_name%/*}
-
-  #echo $sublpk_name
-
-  # 开始解压
-  echo -e "\e[96m 开始解压 \e[92m$zipName \e[96m...\n \e[0m"
-  unzip  $repo_path -d $cachedir
-  #echo $pk_name
-  
-  if [ -d "$cachedir/$unzip_dir" ];then
-    echo -e "\e[96m \e[92m$zipName \e[96m解压成功！\n \e[0m"
-  else
-    echo -e "\e[93m $zipName 解压失败！\n \e[0m"
-  fi
+	#ls -al $cachedir
 	
-  #ls -al $cachedir
+	# 查看zip包中到底有几个文件或目录
+	# 如果只有一个，那就解压，进行一步打包操作
+	# 如果是多个目录或文件，那就直接把后缀名更改为 sublime-package 移动到SublimeText插件目录
+	# zip -sf xxx.zip | awk -F "/" 'NR>2 {print line} {line=$0}' | awk -F "/" '{print $1}' | uniq | wc -l
+	# 压缩包内的数量
+	file_count=`zip -sf $cachedir/$zipName | awk -F "/" 'NR>2 {print line} {line=$0}' | awk -F "/" '{print $1}' | uniq | wc -l`
+	if [ $file_count -gt 1 ];then
+		# 去除.zip后缀名 	
+		if [ ${zipName##*.}x = "zip"x ];then
+			zipName_nozip=${zipName%.*}
+		fi
 
-  # 构建 sublime-package
-  echo -e "\e[96m 开始构建 sublime-package 包...\n \e[0m"
-  # 跳转到解压后的目录
-  cd $cachedir/$unzip_dir
-  echo -e "\e[96m 开始打包... \e[0m"
-  zip -r -q $sublpk_name  *
-  # 将压缩包移到 ~/.config/sublime-text/Installed Packages
-  if [ -f "$sublpk_name.zip" ];then
-    echo -e "\e[96m 移动 \e[92m'$sublpk_name.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
-    mv "$sublpk_name.zip" "$installed_packages_path/"$sublpk_name.sublime-package
-    # 删除解压的目录
-    cd $setting_sh_root 
-    echo -e "\e[96m 删除 \e[92m'$cachedir/$unzip_dir' \e[96m目录... \n \e[0m"
-    rm -rf $cachedir/$unzip_dir
-  else
-    echo -e "\e[96m 没找到 \e[93m'$sublpk_name.zip' \n \e[0m"
-  fi
+		echo -e "\e[96m 移动 \e[92m'$zipName_nozip.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
+		mv $repo_path "$installed_packages_path/"$zipName_nozip.sublime-package
+		return
+	fi
 
+	# 解压 
+	# 获取 压缩包内文件列表
+	# 主要取解压后的目录名
+	unzip_dir=`unzip -l $repo_path|awk 'NR==5{print $NF}'`
+  
+	#echo $unzip_dir
+  
+	# 使用空格替换横杠作为分隔符，以此将字符串分割成数组
+	uz_arr=(${unzip_dir//-// })
+
+	# 取第一个元素
+	# 这是 sublime-package 包的名称
+	sublpk_name=${uz_arr[0]}
+	# 把最后的斜杠 / 去除
+	sublpk_name=${sublpk_name%/*}
+
+	#echo $sublpk_name
+
+	# 开始解压
+	echo -e "\e[96m 开始解压 \e[92m$zipName \e[96m...\n \e[0m"
+	unzip  $repo_path -d $cachedir
+	#echo $pk_name
+
+	if [ -d "$cachedir/$unzip_dir" ];then
+		echo -e "\e[96m \e[92m$zipName \e[96m解压成功！\n \e[0m"
+	else
+		echo -e "\e[93m $zipName 解压失败！\n \e[0m"
+	fi
+	
+	#ls -al $cachedir
+
+	# 构建 sublime-package
+	echo -e "\e[96m 开始构建 sublime-package 包...\n \e[0m"
+	# 跳转到解压后的目录
+	cd $cachedir/$unzip_dir
+
+	# 只有一个目录没有其他文件
+
+		echo -e "\e[96m 开始打包... \e[0m"
+		zip -r -q $sublpk_name  *
+		# 将压缩包移到 ~/.config/sublime-text/Installed Packages
+		if [ -f "$sublpk_name.zip" ];then
+			echo -e "\e[96m 移动 \e[92m'$sublpk_name.zip' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
+			mv "$sublpk_name.zip" "$installed_packages_path/"$sublpk_name.sublime-package
+			# 删除解压的目录
+			cd $setting_sh_root 
+			echo -e "\e[96m 删除 \e[92m'$cachedir/$unzip_dir' \e[96m目录... \n \e[0m"
+			rm -rf $cachedir/$unzip_dir
+		else
+			echo -e "\e[96m 没找到 \e[93m'$sublpk_name.zip' \n \e[0m"
+		fi
+	# else
+		# cd $setting_sh_root
+		# echo -e "\e[96m 移动 \e[92m'$zipName' \e[96m至 \e[92m'$installed_packages_path' \e[96m目录...\n \e[0m"
+		# mv $cachedir/$zipName "$installed_packages_path/"$sublpk_name.sublime-package
+# 
+	# fi
   #ls -al $cachedir
   #echo $cachedir/$pk_name
 
