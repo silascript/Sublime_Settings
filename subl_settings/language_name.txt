@@ -1,0 +1,13 @@
+
+# 这个文档是记录编程语言名称
+# 主要用来为批量生成各编程语言 .sublime-settings 配置文件的名称时用到的编程语言
+
+HTML
+CSS
+TypeScript
+Bash
+Python
+Go
+Rust
+Java
+

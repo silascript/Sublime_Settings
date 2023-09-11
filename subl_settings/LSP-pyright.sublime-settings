@@ -1,0 +1,16 @@
+// Settings in here override those in "LSP-pyright/LSP-pyright.sublime-settings"
+{
+	"settings": {
+		"python.analysis.diagnosticSeverityOverrides": {
+			"reportDuplicateImport": "none",
+			"reportImplicitStringConcatenation": "none",
+			"reportMissingParameterType": "none",
+			"reportUnboundVariable": "none",
+			"reportUninitializedInstanceVariable": "none",
+			"reportUnusedClass": "none",
+			"reportUnusedFunction": "none",
+			"reportUnusedImport": "none",
+			"reportUnusedVariable": "none",
+		}
+	}
+}

@@ -1,0 +1,7 @@
+// 这个文件是编程语言设置模板
+{
+	// 禁用 Sublime Text 内置补全功能
+	// 这个设置主要是在使用了LSP时开启
+	// 防止补全菜单出现重复项
+	"disable_default_completions": true
+}

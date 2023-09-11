@@ -1,4 +1,0 @@
-// These settings override both User and Default settings for the Python syntax
-{
-	"disable_default_completions": true	
-}
