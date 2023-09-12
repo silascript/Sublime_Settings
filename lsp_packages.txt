@@ -14,6 +14,7 @@ https://github.com/20Tauri/DoxyDoxygen/releases/download/0.83.0/ST4_DoxyDoxygen.
 https://github.com/randy3k/Terminus
 https://github.com/SublimeText/Terminal
 https://github.com/SublimeText/Less
+https://github.com/vuejs/vue-syntax-highlight/tree/st4-tests
 
 
 #LSP
@@ -29,10 +30,13 @@ https://github.com/sublimelsp/LSP-bash
 https://github.com/sublimelsp/LSP-lua
 https://github.com/sublimelsp/LSP-gopls
 https://github.com/sublimelsp/LSP-rust-analyzer
-https://github.com/sublimelsp/LSP-pyright
-#https://github.com/sublimelsp/LSP-pylsp
+#https://github.com/sublimelsp/LSP-pyright
+https://github.com/sublimelsp/LSP-pylsp
 https://github.com/sublimelsp/LSP-ruff
 https://github.com/sublimelsp/LSP-yaml
+#https://github.com/sublimelsp/LSP-vue
+https://github.com/sublimelsp/LSP-volar
+
 
 
 

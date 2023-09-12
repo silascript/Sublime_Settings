@@ -22,13 +22,26 @@ init_lsp
 
 
 # 配置文件路径
-s_settings_pylsp_path=./subl_settings/LSP-pylsp.sublime-settings
-s_settings_pyright_path=./subl_settings/LSP-pyright.sublime-settings
+# s_settings_lsp_path=./subl_settings/LSP.sublime-settings
+# s_settings_pylsp_path=./subl_settings/LSP-pylsp.sublime-settings
+# s_settings_pyright_path=./subl_settings/LSP-pyright.sublime-settings
+
+settings_path[0]=./subl_settings/LSP.sublime-settings
+settings_path[1]=./subl_settings/LSP-pylsp.sublime-settings
+settings_path[2]=./subl_settings/LSP-pyright.sublime-settings
 
 # 目标目录路径
 t_settings_dir=~/.config/sublime-text/Packages/User/
 
-subl_cp_settings $s_settings_pylsp_path $t_settings_dir
-subl_cp_settings $s_settings_pyright_path $t_settings_dir
+# 复制配置文件到目标目录
+# subl_cp_settings $s_settings_lsp_path $t_settings_dir
+# subl_cp_settings $s_settings_pylsp_path $t_settings_dir
+# subl_cp_settings $s_settings_pyright_path $t_settings_dir
+
+for sp in ${settings_path[*]}
+do
+	subl_cp_settings $sp $t_settings_dir
+done
+
 
 
