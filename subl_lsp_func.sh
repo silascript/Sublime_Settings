@@ -23,23 +23,31 @@ source ./subl_downpackage_func.sh
 # 读取编辑语言名称文件批量编程语言配置文件
 function generate_language_settings(){
   
-  # 文件名
-  addr_file=$1
+	# 模板文件
+	temp_file=$1
+	# 文件名
+	names_file=$2
+	# 目标目录路径
+	t_settings_dir=$3
 
-  echo -e "\e[96m开始读取 \e[92m$addr_file \e[96m批量生成各编程语言配置文件...\n \e[0m"
-
-  cat $addr_file | grep -v ^$ | grep -v ^\# | while read line
-  do
-    pk_addrs=$line
+	echo -e "\e[96m开始读取 \e[92m$names_file \e[96m批量生成各编程语言配置文件...\n \e[0m"
 	
-	# 判断是否以#符号起始
-	# 以#符号起始视为注释该行插件
-	# if [ ${pk_addrs:0:1}x == "#"x ];then
-		# continue
-	# fi
-
-    
-  done
+	cat $names_file | grep -v ^$ | grep -v ^\# | while read line
+	do
+		lang_name=$line
+	
+		# 判断是否以#符号起始
+		# 以#符号起始视为注释该行插件
+		# if [ ${pk_addrs:0:1}x == "#"x ];then
+			# continue
+		# fi
+		# 目标编程语言配置文件路径
+		t_lang_settings_path="$t_settings_dir$lang_name.sublime-settings"
+		# echo -e "\e[96m复制 \e[92m$t_lang_settings_path \e[96m...\n \e[0m"
+		# cp $temp_file $t_lang_settings_path
+		subl_cp_settings $temp_file $t_lang_settings_path
+		
+	done
 
 }
 
@@ -72,10 +80,27 @@ function init_lsp(){
 
 	install_package_by_addrfile $addr_file
 
+
 	# 复制 settings
 	# 全局
-	# s_settings_path=./subl_settings/lsp_settings.sublime-settings
-	# t_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+	s_lsp_settings_path=./subl_settings/lsp_settings.sublime-settings
+	t_preferences_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+	
+	# echo -e "\e[96m开始复制 \e[92m$s_settings_path \e[96m为 \e[92m$t_settings_path \e[96m...\n \e[0m"
+	# cp $s_settings_path $t_settings_path
+	subl_cp_settings $s_lsp_settings_path $t_preferences_settings_path 
+
+	# 配置文件模板路径
+	s_settings_temp_path=./subl_settings/language_settings_temp.json
+	# 编程语言名称列表文件
+	language_name_file_path=./subl_settings/language_name.txt
+	# 目标目录路径
+	t_settings_dir=~/.config/sublime-text/Packages/User/
+
+	# 生成各编程语言配置文件
+	generate_language_settings $s_settings_temp_path $language_name_file_path $t_settings_dir
+	
+
 
 	# python
 	# s_py_settings_path=./subl_settings/Python.sublime-settings
@@ -124,7 +149,7 @@ function init_lsp(){
 
 # --------------------------测试-------------------------- #
 
-
+ # init_lsp
 
 
 

@@ -12,10 +12,12 @@
 # subl_reset_func.sh （重置脚本）
 # subl_init_func.sh （初始化脚本）
 # subl_downpackage_func.sh （下载脚本）
-source ./subl_ls_func.sh
+source ./subl_lsp_func.sh
 
 
 
-#---------------------------------------------------------#
+# --------------------------主执行区-------------------------- #
+
+init_lsp
 
 

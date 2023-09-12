@@ -12,7 +12,7 @@
 
 # ----------------------------函数区-------------------------------- #
 
-# 复制 Preferences.sublime-settings
+# 复制 .sublime-settings 配置文件
 function subl_cp_settings(){
 	
 	# settings 路径
@@ -29,9 +29,9 @@ function subl_cp_settings(){
 		echo -e "\e[96m 如果已存在的 settings，将会被覆盖...\n \e[0m"
 		cp -f -v $settings_path $target_settings_path
 		if [ $? == 0 ];then
-		echo -e "\e[92m \e[37m \n Preferences.sublime-settings \e[92m复制成功！\n \e[0m"
+			echo -e "\e[92m \e[37m$target_settings_path \e[92m复制成功！\n \e[0m"
 		else
-		echo -e "\e[91m \e[37m \n Preferences.sublime-settings \e[91m复制失败！\n \e[0m"
+			echo -e "\e[91m \e[37m$target_settings_path \e[91m复制失败！\n \e[0m"
 		fi
 	else
 		echo -e "\e[92m $settings_path \e[96m不存在！\n \e[0m"
