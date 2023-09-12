@@ -21,3 +21,14 @@ source ./subl_lsp_func.sh
 init_lsp
 
 
+# 配置文件路径
+s_settings_pylsp_path=./subl_settings/LSP-pylsp.sublime-settings
+s_settings_pyright_path=./subl_settings/LSP-pyright.sublime-settings
+
+# 目标目录路径
+t_settings_dir=~/.config/sublime-text/Packages/User/
+
+subl_cp_settings $s_settings_pylsp_path $t_settings_dir
+subl_cp_settings $s_settings_pyright_path $t_settings_dir
+
+
