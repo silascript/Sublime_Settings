@@ -79,8 +79,20 @@ function download_by_release_address(){
 
 	# $1包地址
 	# $2下载到哪个目录
-	wget $1 -P $2
+	s1=$1	
+	# 将/替换为空格，并按空格切割成数组
+	arr1=(${s1//\// })
+	
+	if[ ${arr1[1]} =="github.com" ] && [[ ${arr1[4]} == "releases" || ${arr1[4]} == "archive" ]];then
+		# 使用代理加速
+		# 代理加速网址
+		# 使用 https://github.moeyy.xyz/ 来加速下载release包
+		proxy_addrs=https://github.moeyy.xyz/
 
+		wget $proxy_addrs$1 -P $2
+	else
+		wget $1 -P $2
+	fi
 }
 
 
@@ -170,6 +182,11 @@ function buildPackage_zip(){
 	# release 包地址 
 	release_addrs=$1 
   
+	# 代理加速网址
+	# 使用 https://github.moeyy.xyz/ 来加速下载release包
+	# proxy_addrs=https://github.moeyy.xyz/
+
+
 	# 从下载地址获取包名  
 	zipName=$(getRepoName $release_addrs)
 
