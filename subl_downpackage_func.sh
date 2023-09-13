@@ -326,15 +326,26 @@ function install_package_sbpk(){
   sbpk_name=${arr_addrs[-1]}
 
   if [ ${pk_addrs##*.}x = "sublime-package"x ];then
-    
-    
+	
+	# 取不带后缀名的包名
+	sbpk_name_without_suffix=${sbpk_name%.*}
+	
+
 	# 处理 A File Icon这个特殊的插件
-    if [ "$sbpk_name" == "A.File.Icon.sublime-package" ];then
-		sbpk_name="A File Icon.sublime-package"   
+    # if [ "$sbpk_name" == "A.File.Icon.sublime-package" ];then
+	dotstr="."
+    if [[  $sbpk_name_without_suffix == *$dotstr* ]];then
+		# sbpk_name="A File Icon.sublime-package"   
 		echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+
+		# 将.替换为空格
+		sbpk_name_without_suffix_space=${sbpk_name_without_suffix//./ }
 
 		# 使用 https://github.moeyy.xyz/ 来加速下载release包
 		proxy_addrs=https://github.moeyy.xyz/
+		# wget $proxy_addrs$pk_addrs -O "$cachedir/$sbpk_name"
+		# 重新组装sublime-package包的名称
+		sbpk_name=$sbpk_name_without_suffix_space.sublime-package
 		wget $proxy_addrs$pk_addrs -O "$cachedir/$sbpk_name"
     else
 		echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
