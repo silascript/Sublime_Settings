@@ -83,7 +83,7 @@ function download_by_release_address(){
 	# 将/替换为空格，并按空格切割成数组
 	arr1=(${s1//\// })
 	
-	if[ ${arr1[1]} =="github.com" ] && [[ ${arr1[4]} == "releases" || ${arr1[4]} == "archive" ]];then
+	if [ ${arr1[1]} == "github.com" ]&&[[ ${arr1[4]} == "releases" || ${arr1[4]} == "archive" ]];then
 		# 使用代理加速
 		# 代理加速网址
 		# 使用 https://github.moeyy.xyz/ 来加速下载release包
@@ -328,19 +328,22 @@ function install_package_sbpk(){
   if [ ${pk_addrs##*.}x = "sublime-package"x ];then
     
     
-    # 处理 A File Icon这个特殊的插件
+	# 处理 A File Icon这个特殊的插件
     if [ "$sbpk_name" == "A.File.Icon.sublime-package" ];then
-      sbpk_name="A File Icon.sublime-package"   
-      echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
-      wget $pk_addrs -O "$cachedir/$sbpk_name"
+		sbpk_name="A File Icon.sublime-package"   
+		echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+
+		# 使用 https://github.moeyy.xyz/ 来加速下载release包
+		proxy_addrs=https://github.moeyy.xyz/
+		wget $proxy_addrs$pk_addrs -O "$cachedir/$sbpk_name"
     else
-      echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
-      download_by_release_address $pk_addrs $cachedir
+		echo -e "\e[96m 开始下载 \e[92m$sbpk_name \e[96m...\n \e[0m"
+		download_by_release_address $pk_addrs $cachedir
     fi
 
-    #wget $pkaddrs -P $cachedir
-    echo -e "\e[96m 开始移动 \e[92m$sbpk_name \e[96m至 \e[92m$installed_packages_path \e[96m目录...\n \e[0m"
-    mv "$cachedir/$sbpk_name" "$installed_packages_path"
+		#wget $pkaddrs -P $cachedir
+		echo -e "\e[96m 开始移动 \e[92m$sbpk_name \e[96m至 \e[92m$installed_packages_path \e[96m目录...\n \e[0m"
+		mv "$cachedir/$sbpk_name" "$installed_packages_path"
   fi
 
 }
