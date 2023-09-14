@@ -37,6 +37,26 @@ function createCacheDir(){
 
 }
 
+# 将github地址变成数组
+# 以/为分隔符
+# function getGithubAddrsArray(){
+	# 
+	# # github 仓库地址
+	# r_addrs=$1
+# 
+	# # 判断仓库地址有没有.git
+	# # 有就去除.git
+	# if [ ${r_addrs##*.}x = "git"x ];then
+		# r_addrs=${r_addrs%.*}
+	# fi
+# 
+	# # 使用空格替换斜杠作为分隔符，以此将字符串分割成数组
+	# arr_ads=(${r_addrs//\// })
+	# 
+	# echo ${arr_ads[@]}
+# }
+
+
 
 # 从仓库地址获取仓库名
 # 主要用于获取下载下来github项目的目录名
@@ -48,16 +68,26 @@ function getRepoName(){
 	# 判断仓库地址有没有.git
 	# 有就去除.git
 	if [ ${repo_addrs##*.}x = "git"x ];then
-	repo_addrs=${repo_addrs%.*}
+		repo_addrs=${repo_addrs%.*}
 	fi
 
 	# 使用空格替换斜杠作为分隔符，以此将字符串分割成数组
 	arr_addrs=(${repo_addrs//\// })
+	# arr_addrs=$(getGithubAddrsArray $1)
 
 	# 取最后一个元素
 	# 取最后一个元素的索引
 	#repo_index=$((${#arr_addrs[@]}-1))
-	repo_name=${arr_addrs[-1]}
+	# repo_name=${arr_addrs[-1]}
+
+	# 如果是github仓库分支
+	# 就取倒数第三个
+	if [ ${arr_addrs[-2]} == "tree" ];then
+		repo_name=${arr_addrs[-3]}
+	else
+		repo_name=${arr_addrs[-1]}
+	fi
+
 
 	echo $repo_name
 
@@ -69,7 +99,31 @@ function download_by_github_address(){
     # 下载
     # 第一个参数是github地址
     # 第二个参数是下载的目标目录路径
-    git clone $1 $2
+	
+	# github 仓库地址
+	github_addrs=$1
+
+	# 判断仓库地址有没有.git
+	# 有就去除.git
+	if [ ${github_addrs##*.}x = "git"x ];then
+		github_addrs=${github_addrs%.*}
+	fi
+
+	# 使用空格替换斜杠作为分隔符，以此将字符串分割成数组
+	arr1=(${github_addrs//\// })
+
+	# 取出tree之前的地址
+	if [ ${arr1[-2]} == "tree" ];then
+		# echo ${s1%/tree*}
+		# 取tree左边的地址
+		github_addrs=${$github_addrs%/tree*}
+		# 使用分支参数下载
+		# 取数组最后一个元素为分支名
+		git clone -b ${arr1[-1]} $github_addrs $2	
+	else
+		git clone $1 $2
+	fi
+
 }
 
 # github release 包下载
