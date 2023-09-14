@@ -116,7 +116,7 @@ function download_by_github_address(){
 	if [ ${arr1[-2]} == "tree" ];then
 		# echo ${s1%/tree*}
 		# 取tree左边的地址
-		github_addrs=${$github_addrs%/tree*}
+		github_addrs=${github_addrs%/tree*}
 		# 使用分支参数下载
 		# 取数组最后一个元素为分支名
 		git clone -b ${arr1[-1]} $github_addrs $2	
