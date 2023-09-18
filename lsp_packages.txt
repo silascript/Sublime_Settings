@@ -16,6 +16,7 @@ https://github.com/randy3k/Terminus
 https://github.com/SublimeText/Terminal
 https://github.com/SublimeText/Less
 https://github.com/vuejs/vue-syntax-highlight/tree/st4-tests
+https://github.com/Sublime-Instincts/CommandsBrowser
 
 
 
