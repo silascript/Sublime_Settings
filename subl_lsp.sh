@@ -29,6 +29,7 @@ init_lsp
 settings_path[0]=./subl_settings/LSP.sublime-settings
 settings_path[1]=./subl_settings/LSP-pylsp.sublime-settings
 settings_path[2]=./subl_settings/LSP-pyright.sublime-settings
+settings_path[3]=./subl_settings/LSP-jdtls.sublime-settings
 
 # 目标目录路径
 t_settings_dir=~/.config/sublime-text/Packages/User/
