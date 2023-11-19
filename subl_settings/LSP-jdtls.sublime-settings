@@ -1,0 +1,6 @@
+// Settings in here override those in "LSP-jdtls/LSP-jdtls.sublime-settings"
+
+{
+	"java.jdt.ls.java.home":"~/.sdkman/candidates/java/current/",
+	"java.jdt.ls.lombokSupport.enabled": false,
+}
