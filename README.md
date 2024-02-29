@@ -4,7 +4,7 @@
 
 ## 简介
 
-这一套脚本是用来在 Linux 平台下快速设置 vim。
+这一套脚本是用来在 Linux 平台下快速设置 SublimeText。
 
 脚本编写平台：Manjaro（core：6.1.49-1）。
 
