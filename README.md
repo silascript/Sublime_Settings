@@ -6,7 +6,7 @@
 
 这一套脚本是用来在 Linux 平台下快速设置 SublimeText。
 
-脚本编写平台：Manjaro（core：6.1.49-1）。
+脚本编写平台：Manjaro（core：6.6.16-2）。
 
 ---
 
@@ -152,9 +152,6 @@ Pyright如果跟ruff插件一起使用，那就把pyright中Linter部分功能�
 
 
 
-
-
-
 ---
 
 
@@ -163,7 +160,7 @@ Pyright如果跟ruff插件一起使用，那就把pyright中Linter部分功能�
 除了插件列表文件中的插件外，有些插件因各种原因不便使用脚本自动安装，只能手动根据需求安装。
 
 * [Pretty Shell](https://github.com/aerobounce/Sublime-Pretty-Shell)： 这是一个 shell 格式化插件。这个插件使用到了[shfmt](https://github.com/mvdan/sh)这个shell格式化工具，请自行通过操作系统的包管理工具先行安装。
-* [open int browser](https://github.com/vicke4/open_in_browser)：打开浏览器进行预览插件。这插件即能用于普通的html也能用于markdown预览--当然，要实现Markdown预览，你的浏览器得先安装markdown预览插件，可以到浏览器商店找下安下就行了。
+* [open in browser](https://github.com/vicke4/open_in_browser)：打开浏览器进行预览插件。这插件即能用于普通的html也能用于markdown预览--当然，要实现Markdown预览，你的浏览器得先安装markdown预览插件，可以到浏览器商店找下安下就行了。
 
 配置浏览器：
 
