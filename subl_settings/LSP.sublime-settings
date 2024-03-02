@@ -8,6 +8,33 @@
                 "--stdio"
             ],
             "selector": "text.html.markdown"
-        }
+        },
+        "solargraph": {
+            "enabled": true,
+            "command": [
+                "solargraph",
+                "stdio"
+            ],
+            "selector": "source.ruby | text.html.ruby",
+            "initializationOptions": {
+                "diagnostics": true
+            }
+        },
+        // "sorbet": {
+        //     "enabled": true,
+        //     "command": ["srb", "tc", "--typed", "true", "--enable-all-experimental-lsp-features", "--lsp", "--disable-watchman"],
+        //     "selector": "source.ruby | text.html.ruby",
+        // },
+        // "ruby-lsp": {
+        //     "enabled": true,
+        //     "command": ["ruby-lsp"],
+        //     "selector": "source.ruby | text.html.ruby",
+        //     "initializationOptions": {
+        //         "enabledFeatures": {
+        //             "diagnostics": true
+        //         },
+        //         "experimentalFeaturesEnabled": true
+        //     }
+        // },
     }
 }
