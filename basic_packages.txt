@@ -1,7 +1,7 @@
 https://github.com/rexdf/ChineseLocalization/archive/refs/tags/st3-1.11.7.zip
 https://github.com/NeoVintageous/NeoVintageous
 https://github.com/gerardroche/NeoVintageousHighlightLine
-https://github.com/SublimeText/AFileIcon/releases/download/3.27.0/A.File.Icon.sublime-package
+https://github.com/SublimeText/AFileIcon/releases/download/3.28.0/A.File.Icon.sublime-package
 #https://github.com/titoBouzout/SideBarEnhancements
 https://github.com/braver/SideBarTools
 https://github.com/seanliang/ConvertToUTF8
@@ -17,7 +17,7 @@ https://github.com/Briles/gruvbox
 https://github.com/20Tauri/DoxyDoxygen/releases/download/1.0.1/ST4_DoxyDoxygen.sublime-package
 https://github.com/randy3k/Terminus
 https://github.com/SublimeText/Terminal
-#https://github.com/SublimeText/Less/releases/download/3.0.3/Less-3.0.3-st4149.sublime-package
+#https://github.com/SublimeText/Less/releases/download/3.0.5/Less-3.0.3-st4149.sublime-package
 https://github.com/SublimeText/Less
 https://github.com/Sublime-Instincts/CommandsBrowser
 
