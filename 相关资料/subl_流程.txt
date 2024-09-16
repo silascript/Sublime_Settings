@@ -1,0 +1,286 @@
+
+使用 inotifywait 工具监控sublime 相关操作流程
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+reset.sh 重置函数
+
+
+如果之前 Lib目录中存在库文件pacakage_control.py，就会先删除这些库文件
+17/09/24 03:33 .config/sublime-text/Lib/python33/package_control.py DELETE
+17/09/24 03:33 .config/sublime-text/Lib/python33 DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Lib/python38/package_control.py DELETE
+17/09/24 03:33 .config/sublime-text/Lib/python38 DELETE,ISDIR
+然后才删除Lib这个库目录
+17/09/24 03:33 .config/sublime-text/Lib DELETE,ISDIR
+
+17/09/24 03:33 .config/sublime-text/Installed Packages/Package Control.sublime-package DELETE
+17/09/24 03:33 .config/sublime-text/Installed Packages DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Packages/User/Preferences.sublime-settings DELETE
+17/09/24 03:33 .config/sublime-text/Packages/User/Package Control.sublime-settings DELETE
+17/09/24 03:33 .config/sublime-text/Packages/User/Package Control.user-ca-bundle DELETE
+17/09/24 03:33 .config/sublime-text/Packages/User DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Packages DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Trash DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Log DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text/Local/Session.sublime_session DELETE
+17/09/24 03:33 .config/sublime-text/Local DELETE,ISDIR
+17/09/24 03:33 .config/sublime-text DELETE,ISDIR
+
+重启Sublime 创建sublime-text目录
+17/09/24 03:33 .config/sublime-text CREATE,ISDIR
+17/09/24 03:33 .config/sublime-text/Installed Packages CREATE,ISDIR
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+Install Package Control
+
+
+wget -P ".config/sublime-text/Installed Packages" 'https://packagecontrol.io/Package Control.sublime-package'
+
+
+这是下载 Package Control.sublime-package 这个包到 Installed Packages 目录
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package CREATE
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/Package Control.sublime-package ATTRIB
+
+这是创建 0_package_control_loader.sublime-package 临时包，看名称应该是个加载器，应该是用来给Lib目录添加相应的python库文件
+17/09/24 03:41 .config/sublime-text/Installed Packages/0_package_control_loader.sublime-package CREATE
+17/09/24 03:41 .config/sublime-text/Installed Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Installed Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 03:41 .config/sublime-text/Packages/User/Package Control.sublime-settings CREATE
+17/09/24 03:41 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+
+
+关闭
+17/09/24 03:42 .config/sublime-text/Local/Session.sublime_session.tmp CREATE
+17/09/24 03:42 .config/sublime-text/Local/Session.sublime_session.tmp MODIFY
+17/09/24 03:42 .config/sublime-text/Local/Auto Save Session.sublime_session DELETE
+
+重启 这才开始安装 Package Control
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.user-ca-bundle CREATE
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings CREATE
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+
+对 Package Control.sublime-package 一番操作
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package DELETE
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package CREATE
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package MODIFY
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package ATTRIB
+17/09/24 03:42 .config/sublime-text/Installed Packages/Package Control.sublime-package ATTRIB
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+
+这是是安装 Package Control 的关键点，其实就是加载 python的库文件。
+得加载两个，一个是python3.3，另一个是python3.8的，名称都叫 package_control.py
+加载到相应的目录中
+17/09/24 03:42 .config/sublime-text/Lib/python33/package_control.py CREATE
+17/09/24 03:42 .config/sublime-text/Lib/python33/package_control.py MODIFY
+17/09/24 03:42 .config/sublime-text/Lib/python38/package_control.py CREATE
+17/09/24 03:42 .config/sublime-text/Lib/python38/package_control.py MODIFY
+修改配置文件
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+
+
+0_package_control_loader.sublime-package 这应该是Package Control的加载器，属于一个临时文件 应该是为了Lib目录添加完相应的package_control.py文件，这之前已经完全了package_control.py文件的添加，所以这个加载器就没必要存在，故将其删除
+17/09/24 03:42 .config/sublime-text/Installed Packages/0_package_control_loader.sublime-package DELETE
+修改配置文件
+17/09/24 03:42 .config/sublime-text/Packages/User/Package Control.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+17/09/24 03:42 .config/sublime-text/Packages/User/Preferences.sublime-settings MODIFY
+
+
+这是弹出要求重启Sublime窗口，依要求重启Sublime后监控到的结果
+即创建Trash目录 这也是安装 Package Control 结束点
+17/09/24 03:43 .config/sublime-text/Trash CREATE,ISDIR
+
+
+
+///////////////////////////////////////////////////////
+
+
+17/09/24-03:12-.config/sublime-text/Lib-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text/Installed-Packages DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text/Packages/User-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text/Packages-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text/Log-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text/Local-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text-DELETE,ISDIR
+17/09/24-03:12-.config/sublime-text-CREATE,ISDIR
+17/09/24-03:12-.config/sublime-text/Log-CREATE,ISDIR
+17/09/24-03:12-.config/sublime-text/Installed-Packages CREATE,ISDIR
+17/09/24-03:12-.config/sublime-text/Packages/User/Preferences.sublime-settings-CREATE
+17/09/24-03:12-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package CREATE
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
+17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package CREATE
+17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24-03:12-.config/sublime-text/Packages/User/Package-Control.sublime-settings CREATE
+17/09/24-03:12-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-CREATE
+17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.user-ca-bundle CREATE
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package DELETE
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package CREATE
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
+17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package DELETE
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
+17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-CREATE
+17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
+17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
+17/09/24-03:14-.config/sublime-text/Trash-CREATE,ISDIR
+
+
+
+17/09/24-03:13-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package DELETE
+
+
+.config/sublime-text/Trash-CREATE,ISDIR 
+
+

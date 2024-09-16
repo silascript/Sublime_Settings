@@ -31,7 +31,7 @@ function batch_install_plugins() {
 
 	# 复制 basic settings
 	local s_setings_path=./subl_settings/basic_gruvbox_settings.sublime-settings
-	local t_settings_path=~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+	local t_settings_path=$HOME/.config/sublime-text/Packages/User/Preferences.sublime-settings
 	subl_cp_settings $s_setings_path $t_settings_path
 
 	# 重启Sublime Text
@@ -50,7 +50,19 @@ init_main
 # 重启Sublime Text
 subl_restart
 
-sleep 5
+sleep 10
 
-# 批量安装插件
-batch_install_plugins
+# 检测 package_control.py 是否存在
+# .config/sublime-text/Lib/python38/package_control.py
+# .config/sublime-text/Installed Packages0_package_control_loader.sublime-package 是否存在
+# 0_package_control_loader.sublime-package 未手动重启前是存在，这时python38/package_control.py是未生成的
+# 手动重启后 python38/package_control.py被清理掉而不存在，而python38/package_control.py被生成这才完成Package Control的安装
+lib_exists=$(exists_packagecontrol_lib)
+
+if [[ $lib_exists == "y" ]]; then
+	# 批量安装插件
+	batch_install_plugins
+else
+	#
+	echo -e "\e[93m $HOME/.config/sublime-text/Lib/python38/目录下并未存在'package_control.py'文件，Package Control 安装未完成！  \n \e[0m"
+fi

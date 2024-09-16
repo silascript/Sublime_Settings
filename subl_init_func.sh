@@ -53,11 +53,35 @@ function subl_cp_global_defualt_settings() {
 
 }
 
+# 检测 Package Control 安装后相应的lib是否加载完
+# ~/.config/sublime-text/Lib/python38/目录下是否存在package_control.py文件
+# 不用检测 ~/~/.config/sublime-text/Lib/python33/目录
+# 因为python3.3 只支持老的插件，新插件都是要求3.8的
+function exists_packagecontrol_lib() {
+
+	# 检测结果
+	local is_exist="y"
+
+	local lib_dir="$HOME/.config/sublime-text/Lib/python38/"
+
+	# lib文件名
+	local lib_file="package_control.py"
+
+	# 判断lig文件是否存在
+	if [[ ! -f "$lib_dir$lib_file" ]]; then
+		is_exist="n"
+	fi
+
+	# 返回检测结果
+	echo $is_exist
+
+}
+
 # 安装 Package Control
 function install_packagecontrol() {
 
 	#检测目录
-	local subldir=~/.config/sublime-text/'Installed Packages'
+	local subldir=$HOME/.config/sublime-text/'Installed Packages'
 	# Package Control 包路径
 	local pcfile=$subldir/'Package Control.sublime-package'
 	#echo $pcfile
