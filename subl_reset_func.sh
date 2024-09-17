@@ -23,14 +23,14 @@ function delete_subl_dir() {
     # 删除 ~/.config/sublime-text
     echo -e "\e[32m 将删除 $subldir 目录，并启动 Sublime Text，以便重新生成 $subldir \e[0m"
     # rm -rvf $subldir/*
-    rm -rvf $subldir
+    rm -rvf "$subldir"
   fi
 
   if [ ! -d "$sublcachedir" ]; then
     echo -e "\e[33m \e[37m$sublcachedir \e[93m目录不存在！\e[0m"
   else
     # 删除 ~/.cache/sublime-text
-    sudo rm -rvf $sublcachedir
+    sudo rm -rvf "$sublcachedir"
   fi
 }
 

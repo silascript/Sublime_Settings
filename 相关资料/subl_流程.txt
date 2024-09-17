@@ -170,117 +170,129 @@ wget -P ".config/sublime-text/Installed Packages" 'https://packagecontrol.io/Pac
 
 ///////////////////////////////////////////////////////
 
-
-17/09/24-03:12-.config/sublime-text/Lib-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text/Installed-Packages DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text/Packages/User-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text/Packages-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text/Log-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text/Local-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text-DELETE,ISDIR
-17/09/24-03:12-.config/sublime-text-CREATE,ISDIR
-17/09/24-03:12-.config/sublime-text/Log-CREATE,ISDIR
-17/09/24-03:12-.config/sublime-text/Installed-Packages CREATE,ISDIR
-17/09/24-03:12-.config/sublime-text/Packages/User/Preferences.sublime-settings-CREATE
-17/09/24-03:12-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package CREATE
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
-17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package CREATE
-17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package MODIFY
-17/09/24-03:12-.config/sublime-text/Packages/User/Package-Control.sublime-settings CREATE
-17/09/24-03:12-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-CREATE
-17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.user-ca-bundle CREATE
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package DELETE
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package CREATE
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
-17/09/24-03:13-.config/sublime-text/Installed-Packages/Package Control.sublime-package ATTRIB
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package DELETE
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Package-Control.sublime-settings MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Packages/User/Preferences.sublime-settings-MODIFY
-17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-CREATE
-17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
-17/09/24-03:13-.config/sublime-text/Local/Session.sublime_session.tmp-MODIFY
-17/09/24-03:14-.config/sublime-text/Trash-CREATE,ISDIR
+init.sh
 
 
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Lib/python33 - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Lib/python38 - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Lib - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Log - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Local/Session.sublime_session - DELETE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Local - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text - DELETE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text - CREATE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Log - CREATE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages CREATE,ISDIR
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package ATTRIB
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/0_package_control_loader.sublime-package CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/0_package_control_loader.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.user-ca-bundle CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package DELETE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package CREATE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package ATTRIB
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/Package Control.sublime-package ATTRIB
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Installed - Packages/0_package_control_loader.sublime-package DELETE
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Package - Control.sublime-settings MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:17 - /home/silascript/.config/sublime-text/Packages/User/Preferences.sublime-settings - MODIFY
+17/09/24 - 21:18 - /home/silascript/.config/sublime-text/Trash - CREATE,ISDIR
 
-17/09/24-03:13-.config/sublime-text/Installed-Packages/0_package_control_loader.sublime-package DELETE
 
 
-.config/sublime-text/Trash-CREATE,ISDIR 
+
+
 
 

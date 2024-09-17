@@ -8,6 +8,9 @@
 # 重置函数脚本中同时引入了 subl_start_close_func.sh 脚本
 source ./subl_reset_func.sh
 
+# sublime 监视器脚本
+# source ./subl_monitor.sh
+
 # ------------------------------------------------------------------ #
 
 # ----------------------------函数区-------------------------------- #
@@ -54,18 +57,22 @@ function subl_cp_global_defualt_settings() {
 }
 
 # 检测 Package Control 安装后相应的lib是否加载完
-# ~/.config/sublime-text/Lib/python38/目录下是否存在package_control.py文件
-# 不用检测 ~/~/.config/sublime-text/Lib/python33/目录
-# 因为python3.3 只支持老的插件，新插件都是要求3.8的
 function exists_packagecontrol_lib() {
 
+	# lig 目录路径
+	local lib_dir=$1
 	# 检测结果
 	local is_exist="y"
 
-	local lib_dir="$HOME/.config/sublime-text/Lib/python38/"
-
 	# lib文件名
 	local lib_file="package_control.py"
+
+	# 如果lib目录路径没有以/结尾，就给它加上/
+	if [[ ${lib_dir: -1} != "/" ]]; then
+		lib_dir="$lib_dir/"
+	fi
+
+	# echo "$lib_dir$lib_file"
 
 	# 判断lig文件是否存在
 	if [[ ! -f "$lib_dir$lib_file" ]]; then
@@ -76,6 +83,30 @@ function exists_packagecontrol_lib() {
 	echo $is_exist
 
 }
+
+# 检测 python38 的库文件是否存在
+# ~/.config/sublime-text/Lib/python38/目录下是否存在package_control.py文件
+# 新插件都是要求3.8的
+function exists_packagecontrol_p38lib() {
+
+	# python38 目录路径
+	# local p38lib_dir="$HOME/.config/sublime-text/Lib/python38/"
+	local p38lib_dir="$HOME/.config/sublime-text/Lib/python38"
+
+	local is_exist="y"
+
+	is_exist=$(exists_packagecontrol_lib "$p38lib_dir")
+
+	echo "$is_exist"
+}
+
+# Package Control 监视器
+# function packagecondtrol_monitor() {
+
+# 	# sublime配置目录，即 ~/.config/sublime-text 目录 监视
+# 	# subl_configdir_monitor
+
+# }
 
 # 安装 Package Control
 function install_packagecontrol() {
@@ -145,3 +176,11 @@ function init_main() {
 #pkill -f "sublime_text"
 
 # echo -e "\e[96m 请自行重启 Sublime Text! \e[0m"
+
+# 测试 检测lib库文件是否存在函数
+# is_e=$(exists_packagecontrol_p38lib)
+# echo "$is_e"
+
+# 测试获取 sublime 的pid
+# st_pid=$(pidof sublime_text)
+# echo $st_pid
