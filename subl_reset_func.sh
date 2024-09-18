@@ -84,7 +84,7 @@ function resetAll() {
   #delete_subl_dir
   deleteAll
 
-  echo -e "\e[96m 现在重新启动 SublimeText... \e[0m"
+  # echo -e "\e[96m 现在重新启动 SublimeText... \e[0m"
   # 重启
   subl_restart
 

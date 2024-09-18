@@ -20,16 +20,16 @@ function subl_configdir_monitor() {
 
             if [[ "$dirfile" == "$subl_config_dir/Lib/python38/package_control.py" && "$event" == "MODIFY" ]]; then
                 # 输出监视信息
-                # echo -e "\e[92m$date - $time - $dir$file - $event\n \e[0m"
+                echo -e "\e[92m$date - $time - $dir$file - $event \e[0m"
                 echo -e "\e[92m已经加载完 \e[96m$dirfile \e[92m文件！\n \e[0m"
             elif [[ "$dirfile" == "$subl_config_dir/Packages/User/Package Control.user-ca-bundle" && "$event" == "CREATE" ]]; then
                 # 输出监视信息
-                echo -e "\e[92m$date - $time - $dir$file - $event\n \e[0m"
+                echo -e "\e[92m$date - $time - $dir$file - $event \e[0m"
                 echo -e "\e[92m创建 \e[96m$dirfile \e[92m文件！\n \e[0m"
             elif [[ "$dirfile" == "$subl_config_dir/Installed Packages/0_package_control_loader.sublime-package" && "$event" == "DELETE" ]]; then
                 # 输出监视信息
                 # echo -e "\e[92m$date - $time - $dir$file - $event\n \e[0m"
-                echo -e "\e[92m删除 \e[96m$dirfile \e[92m文件！\n \e[0m"
+                echo -e "\e[92m删除 \e[96m$dirfile \e[92m文件！ \e[0m"
                 echo -e "\e[96m请手动重启 \e[92mSublime Text \e[96m以完成 \e[92mPackage Control \e[96m安装！\n \e[0m"
             elif [[ "$dirfile" == "$subl_config_dir/Trash" && "$event" == "CREATE,ISDIR" ]]; then
                 # 输出监视信息

@@ -129,12 +129,17 @@ function install_packagecontrol() {
 
 		wget -P "$subldir" 'https://packagecontrol.io/Package Control.sublime-package'
 
-		echo -e "\e[92m请手动重启 \e[96mSublime Text \e[92m以继续 \e[96mPackage Control \e[92m安装...\n \e[0m"
+		# 判断 Package Contronl.sublime-package 文件是否下载成功
+		if [[ -f $pcfile ]]; then
+			echo -e "\e[92m请手动重启 \e[96mSublime Text \e[92m以继续 \e[96mPackage Control \e[92m安装...\n \e[0m"
 
-		sleep 5
+			sleep 5
 
-		# 开启监控及完成 Package Control 安装
-		sh ./subl_monitor.sh
+			# 开启监控及完成 Package Control 安装
+			sh ./subl_monitor.sh
+		else
+			echo -e "\e[92m$pcfile \e[93m文件下载失败！\n \e[0m"
+		fi
 	else
 		echo -e "\e[92mPackage Control \e[96m已经安装了！\n \e[0m"
 	fi
@@ -147,15 +152,12 @@ function init_main() {
 	# 重置
 	resetAll
 
-	# 复制 全局默认 settings
-	# subl_cp_settings default_settings.json
-	subl_cp_global_defualt_settings
-
 	# 安装 Package Control
 	install_packagecontrol
 
-	# 重启
-	# subl_restart
+	# 复制 全局默认 settings
+	# subl_cp_settings default_settings.json
+	subl_cp_global_defualt_settings
 
 	sleep 3
 
@@ -166,7 +168,7 @@ function init_main() {
 	# 	echo -e "\e[96m 请手动重启 SublimeText，以完成 Package Control 安装... \n \e[0m"
 	# fi
 
-	echo -e "\e[96m 初始化完成！\n \e[0m"
+	echo -e "\e[96m Sublime Text 初始化完成！\n \e[0m"
 
 	# 重启Sublime Text
 	# subl_restart
