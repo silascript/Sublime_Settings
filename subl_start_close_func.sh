@@ -15,7 +15,7 @@ function subl_close() {
     #echo $subl_pid
 
     # 关闭 sublime_text 进程
-    echo -e "\e[96m Sublime Text已经启动，现先将其关闭...\n \e[0m"
+    echo -e "\e[96mSublime Text已经启动，现先将其关闭...\n \e[0m"
     kill "$subl_pid"
     sleep 3
 
@@ -28,7 +28,8 @@ function subl_restart() {
   # 关闭
   subl_close
   # 启动
-  echo -e "\e[96m 重启... \e[0m"
+  echo -e "\e[96m重启... \n \e[0m"
+  sleep 3
   subl
 }
 

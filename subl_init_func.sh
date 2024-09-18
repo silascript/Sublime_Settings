@@ -119,7 +119,7 @@ function install_packagecontrol() {
 
 	if [ ! -f "$pcfile" ]; then
 		# 安装 Package Control插件
-		echo -e "\e[96m 安装 Package Control...\n \e[0m"
+		echo -e "\e[96m安装 \e[92mPackage Control\e[96m...\n \e[0m"
 
 		#curl https://packagecontrol.io/Package%20Control.sublime-package --output ~/.config/sublime-text/'Installed Packages'/'Package Control.sublime-package' --progress-bar
 
@@ -129,8 +129,14 @@ function install_packagecontrol() {
 
 		wget -P "$subldir" 'https://packagecontrol.io/Package Control.sublime-package'
 
+		echo -e "\e[92m请手动重启 \e[96mSublime Text \e[92m以继续 \e[96mPackage Control \e[92m安装...\n \e[0m"
+
+		sleep 5
+
+		# 开启监控及完成 Package Control 安装
+		sh ./subl_monitor.sh
 	else
-		echo -e "\e[92m Package Control 已经安装了！\n \e[0m"
+		echo -e "\e[92mPackage Control \e[96m已经安装了！\n \e[0m"
 	fi
 
 }
@@ -149,17 +155,16 @@ function init_main() {
 	install_packagecontrol
 
 	# 重启
-	subl_restart
+	# subl_restart
 
-	sleep 5
+	sleep 3
 
 	# 获取 SublimeText 的 pid
 	# 如果获取到则 SublimeText 正在运行
-	local sub_pid=$(pidof sublime_text)
-
-	if [[ -z $sub_pid ]]; then
-		echo -e "\e[96m 请手动重启SublimeText，以完成 Package Control 安装... \n \e[0m"
-	fi
+	# local sub_pid=$(pidof sublime_text)
+	# if [[ -z $sub_pid ]]; then
+	# 	echo -e "\e[96m 请手动重启 SublimeText，以完成 Package Control 安装... \n \e[0m"
+	# fi
 
 	echo -e "\e[96m 初始化完成！\n \e[0m"
 
