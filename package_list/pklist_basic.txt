@@ -1,0 +1,5 @@
+# 基础插件列表
+
+# 格式：name version
+ChineseLocalization:latest 
+NeoVintageous:latest
