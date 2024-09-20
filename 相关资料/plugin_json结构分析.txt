@@ -1,0 +1,168 @@
+
+
+
+ {
+    "name": "NeoVintageous",
+    "description": "Vim for Sublime Text.",
+    "authors": [
+        "NeoVintageous"
+    ],
+    "homepage": "https://neovintageous.github.io",
+    "previous_names": [],
+    "labels": [
+        "vim",
+        "vi",
+        "vintage",
+        "vintageous",
+        "emulation",
+        "emulator",
+        "editor emulation"
+    ],
+    "readme": "https://raw.githubusercontent.com/NeoVintageous/NeoVintageous/master/README.md",
+    "issues": "https://github.com/NeoVintageous/NeoVintageous/issues",
+    "donate": null,
+    "buy": null,
+    "releases": [
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3000",
+            "version": "1.35.2",
+            "url": "https://codeload.github.com/NeoVintageous/NeoVintageous/zip/1.35.2",
+            "date": "2024-08-27 06:45:10"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3000",
+            "version": "1.34.2",
+            "url": "https://codeload.github.com/NeoVintageous/NeoVintageous/zip/1.34.2",
+            "date": "2024-02-05 09:35:04"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3000",
+            "version": "1.34.0-beta.1",
+            "url": "https://codeload.github.com/NeoVintageous/NeoVintageous/zip/1.34.0-beta.1",
+            "date": "2023-10-07 07:56:58"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3000",
+            "version": "1.33.1",
+            "url": "https://codeload.github.com/NeoVintageous/NeoVintageous/zip/1.33.1",
+            "date": "2023-09-29 18:16:25"
+        }
+    ]
+},
+
+
+///////////////////////////////////////////////////////////
+
+
+{
+    "name": "A File Icon",
+    "description": "Sublime Text File-Specific Icons for Improved Visual Grepping",
+    "authors": [
+        "ihodev",
+        "DeathAxe"
+    ],
+    "homepage": "https://github.com/SublimeText/AFileIcon",
+    "previous_names": [
+        "File Icons Extended",
+        "zz File Icons"
+    ],
+    "labels": [
+        "theme",
+        "file",
+        "icons"
+    ],
+    "readme": "https://raw.githubusercontent.com/SublimeText/AFileIcon/master/README.md",
+    "issues": "https://github.com/SublimeText/AFileIcon/issues",
+    "donate": null,
+    "buy": null,
+    "releases": [
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "3.28.0",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/3.28.0",
+            "date": "2024-06-16 15:38:23"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "3.27.0",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/3.27.0",
+            "date": "2024-01-07 16:13:36"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "3.26.0",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/3.26.0",
+            "date": "2023-12-10 18:15:18"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "3.3.1-pre.1",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/v3.3.1-pre.1",
+            "date": "2019-01-09 13:07:24"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "2.2.0",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/v2.2.0",
+            "date": "2016-11-17 09:37:48"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "2.1.0",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/v2.1.0",
+            "date": "2016-11-14 14:31:06"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "2.0.1",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/v2.0.1",
+            "date": "2016-11-07 14:20:52"
+        },
+        {
+            "platforms": [
+                "*"
+            ],
+            "sublime_text": ">=3114",
+            "version": "1.0.2",
+            "url": "https://codeload.github.com/SublimeText/AFileIcon/zip/v1.0.2",
+            "date": "2016-09-12 14:11:17"
+        }
+    ]
+},
+
+
+
+
