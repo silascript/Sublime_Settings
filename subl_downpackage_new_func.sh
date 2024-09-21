@@ -44,6 +44,7 @@ function read_package_list() {
 
     # 返回数组
     # echo ${#package_arr[@]}
+    # 返回的数组元素格式：name:version 都名称和版本号用冒号:分隔
     echo "${package_arr[@]}"
 }
 
@@ -61,18 +62,26 @@ function analysis_json() {
     # 版本号
     local package_version=$2
 
-    # 如果不给任何参数
-    if [[ $# -eq 0 ]]; then
-        echo -e "\e[92m请指定包的名称及版本号！ \n \e[0m"
-    fi
-
-    if [[ -z $package_name ]]; then
-        echo -e "\e[92m请指定包的名称！ \n \e[0m"
-    fi
+    # 下载地址
+    local dl_url="no_url"
 
     # 如果没给版本号，默认是 latest 即取最新版
     if [[ -z $package_version ]]; then
         package_version="latest"
+    fi
+
+    # echo $package_name
+    # echo $package_version
+    # echo $dl_url
+
+    # echo $#
+
+    # 如果不给任何参数
+    if [[ $# -eq 0 ]]; then
+        echo -e "\e[93m请指定包的名称及版本号！ \n \e[0m"
+        return 1
+    # elif [[ -z $package_name ]]; then
+    #     echo -e "\e[92m请指定包的名称！ \n \e[0m"
     fi
 
     # curl https://packagecontrol.io/channel_v3.json | jq '.["packages_cache"]'
@@ -84,7 +93,29 @@ function analysis_json() {
     # curl https://packagecontrol.io/channel_v3.json| jq -r '.packages_cache.[].[]|select(.name == "NeoVintageous")|.releases[]|select(.version == "1.35.2")|{url}'
     # curl https://packagecontrol.io/channel_v3.json| jq -r '.packages_cache.[].[]|select(.name == "NeoVintageous")|.releases[]|select(.version == "1.35.2").url'
     # curl https://packagecontrol.io/channel_v3.json| jq -r '.packages_cache.[].[]|select(.name == "NeoVintageous")|.releases[0].url'
-    echo -e "\e[93m解析json文件成功！ \n \e[0m"
+
+    if [[ $package_version == "latest" ]]; then
+        # echo $package_name
+        # echo $package_version
+        dl_url=$(curl -s $channel_json_v3 | jq -r --arg pkg_name "$package_name" '.packages_cache.[].[]| select(.name==$pkg_name)|.releases[0].url')
+    else
+        # echo $package_name
+        # echo $package_version
+        dl_url=$(curl -s $channel_json_v3 | jq -r --arg pkg_name "$package_name" --arg pkg_version "$package_version" '.packages_cache.[].[]| select(.name==$pkg_name)|.releases[]| select(.version==$pkg_version).url')
+    fi
+
+    # dl_url=$(curl $channel_json_v3 | jq -r '.packages_cache.[].[]|select(.name == "NeoVintageous")|.releases[0].url')
+
+    # echo ${#dl_url}
+
+    # 返回下载url
+    if [[ -z $dl_url ]]; then
+        dl_url="no_url"
+        # echo -e "\e[93m取不到下载地址！ \n \e[0m"
+        echo "$dl_url"
+    else
+        echo "$dl_url"
+    fi
 }
 
 # 下载包
@@ -142,3 +173,36 @@ function build_package() {
 # echo "${arr_1[@]}"
 # echo "${arr_1[0]}"
 # echo "${arr_1[1]}"
+
+# # s1="${arr_1[0]}"
+
+# echo $s1
+
+# 以:分隔符替换为空格
+# 然后切割字符串并构建成新数组
+# arr2=(${s1//:/ })
+
+# echo ${#arr2[@]}
+# echo "${arr2[@]}"
+# echo "${arr2[0]}"
+# echo "${arr2[1]}"
+
+# 测试解析json函数
+
+# analysis_json "$@"
+# analysis_json
+# analysis_json "NeoVintageous"
+# analysis_json "NeoVintageous" "latest"
+# analysis_json "NeoVintageous" "1.35.2"
+# analysis_json "NeoVintageous" "1.34.2"
+# 带空格的name值
+# analysis_json "A File Icon" "latest"
+# analysis_json "A File Icon" "3.27.0"
+
+# 测试获取地址url
+# r_str=$(analysis_json NeoVintageous 1.34.2)
+# echo $r_str
+
+# 测试不存在url
+# r_str=$(analysis_json "NeoVintageous" "1.34.1")
+# echo $r_str
