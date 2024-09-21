@@ -121,14 +121,44 @@ function analysis_json() {
 }
 
 # 下载包
+# 参数1: 插件release包的url
+# 参数2: 下载的目标目录，即要下载包到哪个目录中。可省略，如果省略，设默认值为".Cache"
+# 参数3: 重命名下载文件的名称。可省。
 function download_package() {
 
     # 包的url
     local package_url=$1
 
+    # 下载到哪个目录
+    local target_dir=$2
+    if [[ -z $target_dir ]]; then
+        target_dir=".Cache"
+    fi
+
+    # 重命名文件名
+    local dl_file_name=$3
+
     if [[ $# -eq 0 ]]; then
         echo -e "\e[92m请指定插件包的url \n \e[0m"
+        return 1
     fi
+
+    # 如果下载目标目录不存在则创建
+    if [[ ! -d $target_dir ]]; then
+        echo -e "\e[92m创建 \e[96m$target_dir \e[92m下载目录... \n \e[0m"
+        mkdir "$target_dir"
+    fi
+
+    # 下载
+    echo -e "\e[92m开始下载 \e[96m$package_url ... \n \e[0m"
+    # 判断有没有指定重命名的下载文件名
+    if [[ -z $dl_file_name ]]; then
+        wget "$package_url" -P "$target_dir"
+    else
+        wget -O "$target_dir/$dl_file_name" "$package_url"
+    fi
+
+    # tail -f wget-log
 
     echo -e "\e[93m下载包成功！ \n \e[0m"
 
@@ -208,3 +238,16 @@ function build_package() {
 # 测试不存在url
 # r_str=$(analysis_json "NeoVintageous" "1.34.1")
 # echo $r_str
+
+# 测试 下载函数 download_package
+
+# 获取下载url
+# d_url=$(analysis_json "NeoVintageous")
+
+# download_package "$d_url"
+# 使用重命名下载文件文件方式下载
+# download_package "$d_url" ".Cache" "NeoVintageous.zip"
+
+
+
+
