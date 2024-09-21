@@ -49,32 +49,16 @@ function read_package_list() {
 }
 
 # 解析 channel json 文件
+# 参数1: 插件名
+# 参数2: 版本号，如果省略，获取最新的
+# 参数3: json 地址，可省略，默认设为https://packagecontrol.io/channel_v3.json
+# 返回值: 插件release包的url地址，如果获取不到则返回"no_url"字样
 function analysis_json() {
 
     # channel json 地址
     # https://packagecontrol.github.io/channel/channel_v4.json
     # https://packagecontrol.io/channel_v3.json
-    local channel_json_v4="https://packagecontrol.github.io/channel/channel_v4.json"
-    local channel_json_v3="https://packagecontrol.io/channel_v3.json"
-
-    # 插件名
-    local package_name=$1
-    # 版本号
-    local package_version=$2
-
-    # 下载地址
-    local dl_url="no_url"
-
-    # 如果没给版本号，默认是 latest 即取最新版
-    if [[ -z $package_version ]]; then
-        package_version="latest"
-    fi
-
-    # echo $package_name
-    # echo $package_version
-    # echo $dl_url
-
-    # echo $#
+    # local channel_json_v4="https://packagecontrol.github.io/channel/channel_v4.json"
 
     # 如果不给任何参数
     if [[ $# -eq 0 ]]; then
@@ -83,6 +67,26 @@ function analysis_json() {
     # elif [[ -z $package_name ]]; then
     #     echo -e "\e[92m请指定包的名称！ \n \e[0m"
     fi
+
+    # 插件名
+    local package_name=$1
+    # 版本号
+    local package_version=$2
+    # 如果没给版本号，默认是 latest 即取最新版
+    if [[ -z $package_version ]]; then
+        package_version="latest"
+    fi
+
+    # channel_json v3 地址
+    local channel_json_v3=$3
+    if [[ -z $channel_json_v3 ]]; then
+        channel_json_v3="https://packagecontrol.io/channel_v3.json"
+    fi
+
+    # echo "$channel_json_v3"
+
+    # 下载地址
+    local dl_url="no_url"
 
     # curl https://packagecontrol.io/channel_v3.json | jq '.["packages_cache"]'
     # cat channel_jq_test.json| jq '.packages_cache.[].[]|{name,releases}'
@@ -103,8 +107,6 @@ function analysis_json() {
         # echo $package_version
         dl_url=$(curl -s $channel_json_v3 | jq -r --arg pkg_name "$package_name" --arg pkg_version "$package_version" '.packages_cache.[].[]| select(.name==$pkg_name)|.releases[]| select(.version==$pkg_version).url')
     fi
-
-    # dl_url=$(curl $channel_json_v3 | jq -r '.packages_cache.[].[]|select(.name == "NeoVintageous")|.releases[0].url')
 
     # echo ${#dl_url}
 
