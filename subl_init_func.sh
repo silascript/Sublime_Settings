@@ -9,7 +9,7 @@
 source ./subl_reset_func.sh
 
 # sublime 监视器脚本
-# source ./subl_monitor.sh
+source ./subl_monitor.sh
 
 # ------------------------------------------------------------------ #
 
@@ -136,7 +136,8 @@ function install_packagecontrol() {
 			sleep 5
 
 			# 开启监控及完成 Package Control 安装
-			sh ./subl_monitor.sh
+			# sh ./subl_monitor.sh
+			subl_configdir_monitor
 		else
 			echo -e "\e[92m$pcfile \e[93m文件下载失败！\n \e[0m"
 		fi

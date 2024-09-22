@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# --------------------------------------------------- #
+# 		          监视器函数脚本                        #
+#                用来监控各种目录                       #
+# -------------------------------------------------- #
+
+# -----------------------函数定义----------------------- #
 
 # .config/sublime-text 目录监视器
 function subl_configdir_monitor() {
@@ -45,6 +51,35 @@ function subl_configdir_monitor() {
     done
 }
 
-# -----------------------------测试------------------------------------- #
+# 解压缩包监视器
+# function subl_unpack_monitor() {
+
+#     # 要监控的缓存目录
+#     # 此目录用来下载及解压包的临时目录
+#     local cache_dir=$1
+
+#     # 包解压后的目录
+#     local unpack_dir=$2
+
+#     inotifywait -mrq --timefmt "%d/%m/%y#%H:%M" --format '%T#%w#%f#%e' -e create,delete,modify,attrib "$cache_dir" | while IFS=\# read date time dir file event; do
+
+#         #目录+文件
+#         local dirfile=$dir$file
+#         if [[ "$dir" == "$unpack_dir" ]]; then
+#             echo "$date - $time - $dir$file - $event"
+
+#             if [[ "$event" == "DELETE,ISDIR" ]]; then
+
+#                 echo -e "\e[92m$date - $time - $dir$file - $event \e[0m"
+#                 echo -e "\e[92m删除 \e[96m$dir \e[92m目录！ \n \e[0m"
+#                 # 停止监视
+#                 pkill -9 inotifywait
+#             fi
+#         fi
+#     done
+
+# }
+
+# -----------------------执行区----------------------- #
 # subl_configdir_monitor "$HOME/.config" &
-subl_configdir_monitor
+# subl_configdir_monitor

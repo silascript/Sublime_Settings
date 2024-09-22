@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 # -------------------------------------------------- #
-# 		        新的下载安装插件包函数脚本
+# 		        新的下载插件包函数脚本
 #     使用查询channel json 文件获取相应的相应的插件包信息
 # -------------------------------------------------- #
+
+# -----------------------函数定义----------------------- #
 
 # 读取包列表
 function read_package_list() {
@@ -123,7 +125,7 @@ function analysis_json() {
 # 下载包
 # 参数1: 插件release包的url
 # 参数2: 下载的目标目录，即要下载包到哪个目录中。可省略，如果省略，设默认值为".Cache"
-# 参数3: 重命名下载文件的名称。可省。
+# 参数3: 重命名下载文件的名称。可省。如果指定重命名的文件名，那参数2 下载目标目录也必须指定。
 function download_package() {
 
     # 包的url
@@ -162,32 +164,6 @@ function download_package() {
 
     echo -e "\e[93m下载包成功！ \n \e[0m"
 
-}
-
-# 解包
-function unpackage() {
-
-    # 判断包中第一层文件一是否大于一个
-    # 大于一个，证明此包不用再解压及重新构建包，直接更名就可以丢到.config/sublime-text/Installed Packages 目录
-    # 如果第一层只有一个目录，证明需要解压，然后重新构建包
-
-    # 计算包中一级文件或目录数量
-    # zipinfo -1 AFileIcon-3.28.0.zip | awk 'BEGIN{FS="/"}{print $1}' | uniq | wc -l
-    # 或者写成这样：zipinfo -1 AFileIcon-3.28.0.zip | awk -F "/" '{print $1}' | uniq | wc -l
-
-    echo -e "\e[93m解压缩包成功！ \n \e[0m"
-}
-
-# 构建包
-function build_package() {
-
-    # download_package
-
-    # unpackage
-
-    # 构建
-
-    echo -e "\e[93m构建包成功！ \n \e[0m"
 }
 
 # -----------------------执行区----------------------- #
@@ -247,7 +223,3 @@ function build_package() {
 # download_package "$d_url"
 # 使用重命名下载文件文件方式下载
 # download_package "$d_url" ".Cache" "NeoVintageous.zip"
-
-
-
-
