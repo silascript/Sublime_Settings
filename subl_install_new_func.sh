@@ -18,6 +18,7 @@ source ./subl_downpackage_new_func.sh
 # 解包
 # 参数1: 压缩包路径
 # 参数2: 缓存目录
+# 返回值: 解压后的目录名
 function unpackage() {
 
     # 判断包中第一层文件一是否大于一个
@@ -76,15 +77,101 @@ function unpackage() {
 }
 
 # 构建包
+# 参数1: 插件的名称
+# 参数2: 插件的版本号
+# 参数3: 插件包的下载url。可省，如果省，会通过参数1和参数2，即插件名称及版本号到json文件中解析出来
 function build_package() {
 
-    # download_package
+    # 插件名称
+    local pkg_name=$1
+    # 版本号
+    local pkg_version=$2
+
+    # 插件包url
+    local pkg_url=$3
+
+    # 如果插件包url没给，就通过插件名和版本号去解析json文件获取
+    if [[ -z "$pkg_url" ]]; then
+        pkg_url=$(analysis_json "$pkg_name" "$pkg_version")
+    fi
+
+    # 缓存目录
+    local cache_dir=$4
+    # 如果没给缓存目录，就设置默认的.Cache目录
+    if [[ -z "$cache_dir" ]]; then
+        cache_dir=".Cache"
+    fi
+
+    # 下载插件包 download_package
+    # 使用 插件名+版本号 为压缩包重命名
+    local dl_pkg_name="$pkg_name-$pkg_version.zip"
+    download_package "$pkg_url" "$cache_dir" $dl_pkg_name
 
     # unpackage
+    # 解压并获取解压后的目录名
+    echo -e "\e[96m开始解压 \e[92m$cache_dir/$dl_pkg_name \e[96m包... \n \e[0m"
+    local unpack_dir_name=$(unpackage "$cache_dir/$dl_pkg_name" "$cache_dir")
+
+    # echo $unpack_dir_name
+
+    sleep 3s
 
     # 构建
+    # 项目根路径
+    # 用于构建完包后 cd 回来
+    local project_root="$PWD"
 
-    echo -e "\e[93m构建包成功！ \n \e[0m"
+    # 解压目录完整路径
+    # 从系统根目录开始，非项目根
+    local unpack_full_path="$project_root/$cache_dir/$unpack_dir_name"
+
+    if [[ -d "$unpack_full_path" ]]; then
+        # 压包
+        # 跳转到解压目录中
+        # cd "$cache_dir/$unpack_dir_name"
+        cd "$unpack_full_path"
+        # echo $PWD
+        echo -e "\e[92m开始构建... \n \e[0m"
+        sleep 3
+        zip -rq "$project_root/$cache_dir/$pkg_name.sublime-package" ./*
+
+        # 更名 将后缀名改成 sublime-package
+        # mv "$pkg_name.zip" "$pkg_name.sublime-package"
+    else
+        # echo -e "\e[93m不存在 \e[96m$cache_dir/$unpack_dir_name \e[93m目录！ \e[0m"
+        echo -e "\e[93m不存在 \e[96m$unpack_full_path \e[93m目录！ \e[0m"
+        echo -e "\e[93m请检查 \e[96m$cache_dir \e[93m缓存目录下，是否存在此目录！\n \e[0m"
+    fi
+
+    # 再跳回项目根目录
+    cd "$project_root"
+
+    # 删除 解压目录
+    if [[ -d "$unpack_full_path" ]]; then
+        echo -e "\e[92m清理 \e[96m$unpack_full_path \e[92m目录... \n \e[0m"
+        sleep 3
+        rm -rf "$unpack_full_path"
+    fi
+
+    # 判断sublime-package包是否存在
+    if [[ -f "$cache_dir/$pkg_name.sublime-package" ]]; then
+        echo -e "\e[96m$cache_dir/$pkg_name.sublime-package \e[92m构建成功！ \n \e[0m"
+    else
+        echo -e "\e[96m$cache_dir/$pkg_name.sublime-package \e[93m不存在，构建包失败！ \n \e[0m"
+    fi
+
+    # 删除缓存目录
+    # if [[ -d "$cache_dir" ]]; then
+    #     rm -rf "$cache_dir"
+    # fi
+
+}
+
+# 安装插件
+function install_core() {
+
+    echo -e "\e[96m安装插件... \e[0m"
+
 }
 
 # -----------------------执行区----------------------- #
@@ -105,3 +192,7 @@ function build_package() {
 # echo ${#unpack_d}
 
 # echo "解压后的目录为：$unpack_d"
+
+# 测试 构建包函数 build_package
+
+# build_package "NeoVintageous" "latest"
