@@ -150,12 +150,12 @@ function download_package() {
 
     # 如果下载目标目录不存在则创建
     if [[ ! -d $target_dir ]]; then
-        echo -e "\e[92m创建 \e[96m$target_dir \e[92m下载目录... \n \e[0m"
+        echo -e "\e[92m创建 \e[96m$target_dir \e[92m缓存目录... \n \e[0m"
         mkdir "$target_dir"
     fi
 
     # 下载
-    echo -e "\e[92m开始下载 \e[96m$package_url ... \n \e[0m"
+    echo -e "\e[92m开始下载 \e[96m$package_url \e[92m... \n \e[0m"
     # 判断有没有指定重命名的下载文件名
     if [[ -z $dl_file_name ]]; then
         wget "$package_url" -P "$target_dir"
@@ -165,7 +165,7 @@ function download_package() {
 
     # tail -f wget-log
 
-    echo -e "\e[93m下载包成功！ \n \e[0m"
+    echo -e "\e[92m下载包成功！ \n \e[0m"
 
 }
 

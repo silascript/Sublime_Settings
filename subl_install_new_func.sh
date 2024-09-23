@@ -109,12 +109,12 @@ function build_package() {
 
     # unpackage
     # 解压并获取解压后的目录名
-    echo -e "\e[96m开始解压 \e[92m$cache_dir/$dl_pkg_name \e[96m包... \n \e[0m"
+    echo -e "\e[92m开始解压 \e[96m$cache_dir/$dl_pkg_name \e[92m ... \n \e[0m"
+    sleep 2s
     local unpack_dir_name=$(unpackage "$cache_dir/$dl_pkg_name" "$cache_dir")
 
     # echo $unpack_dir_name
-
-    sleep 3s
+    sleep 2s
 
     # 构建
     # 项目根路径
@@ -131,7 +131,8 @@ function build_package() {
         # cd "$cache_dir/$unpack_dir_name"
         cd "$unpack_full_path"
         # echo $PWD
-        echo -e "\e[92m开始构建... \n \e[0m"
+        echo -e "\e[92m已经将 \e[96m$dl_pkg_name \e[92m解压到 \e[96m$unpack_full_path \e[92m目录！ \n \e[0m"
+        echo -e "\e[92m开始构建sublime-package包 ... \n \e[0m"
         sleep 3
         zip -rq "$project_root/$cache_dir/$pkg_name.sublime-package" ./*
 
@@ -148,7 +149,7 @@ function build_package() {
 
     # 删除 解压目录
     if [[ -d "$unpack_full_path" ]]; then
-        echo -e "\e[92m清理 \e[96m$unpack_full_path \e[92m目录... \n \e[0m"
+        echo -e "\e[92m清理 \e[96m$unpack_full_path \e[92m目录 ... \n \e[0m"
         sleep 3
         rm -rf "$unpack_full_path"
     fi
@@ -164,6 +165,8 @@ function build_package() {
     # if [[ -d "$cache_dir" ]]; then
     #     rm -rf "$cache_dir"
     # fi
+
+    # echo $PWD
 
 }
 
@@ -196,3 +199,4 @@ function install_core() {
 # 测试 构建包函数 build_package
 
 # build_package "NeoVintageous" "latest"
+# build_package "NeoVintageous" "1.34.2"
