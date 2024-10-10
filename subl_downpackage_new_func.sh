@@ -7,52 +7,6 @@
 
 # -----------------------函数定义----------------------- #
 
-# 读取包列表
-# 可多个参数
-# 每个参数都为插件文件列表文件
-# 至少要有一个参数，即至少给一个插件文件列表文件
-function read_package_list() {
-    # 读取包列表构建数组
-    # ["name1:version","name2:version"]
-
-    # 列表文件地址数组
-    # 可以传多个插件文件参数
-    # package_list 目录下的文件
-    local arg_list=($@)
-
-    # local default_plugin_list=".package_list/pklist_default.txt"
-
-    # 插件数组
-    local package_arr=()
-
-    # 循环参数列表
-    # 获取多个插件列表文件
-    if [[ $# -eq 0 ]]; then
-        echo -e "\e[93m请至少指定一个插件列表！\n \e[0m"
-    else
-        for file_tmp in "${arg_list[@]}"; do
-
-            # 读取插件列表
-            # 遍历插件列表获取每一个插件信息
-            if [[ -f $file_tmp ]]; then
-                # echo $file_tmp
-                for line in $(cat "$file_tmp" | grep -v "^$" | grep -v "^#"); do
-                    # 添加进数组中
-                    # echo "$line"
-                    package_arr+=("$line")
-                done
-            else
-                echo -e "\e[96m$file_tmp \e[93m文件不存在！\n \e[0m"
-            fi
-        done
-    fi
-
-    # 返回数组
-    # echo ${#package_arr[@]}
-    # 返回的数组元素格式：name:version 都名称和版本号用冒号:分隔
-    echo "${package_arr[@]}"
-}
-
 # 解析 channel json 文件
 # 参数1: 插件名
 # 参数2: 版本号，如果省略，获取最新的
@@ -170,33 +124,6 @@ function download_package() {
 }
 
 # -----------------------执行区----------------------- #
-# 测试 读取插件列表文件函数
-# arr_1=($(read_package_list "$@"))
-# echo "${arr_1[@]}"
-
-# for pk_tmp in "${arr_1[@]}"; do
-#     echo $pk_tmp
-# done
-
-# echo "-----------------------------------------"
-
-# echo ${#arr_1[@]}
-# echo "${arr_1[@]}"
-# echo "${arr_1[0]}"
-# echo "${arr_1[1]}"
-
-# # s1="${arr_1[0]}"
-
-# echo $s1
-
-# 以:分隔符替换为空格
-# 然后切割字符串并构建成新数组
-# arr2=(${s1//:/ })
-
-# echo ${#arr2[@]}
-# echo "${arr2[@]}"
-# echo "${arr2[0]}"
-# echo "${arr2[1]}"
 
 # 测试解析json函数
 

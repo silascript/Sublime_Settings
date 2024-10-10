@@ -1,0 +1,7 @@
+# 默认插件集
+
+dependence:
+  - "package_list/pklist_basic.yml"
+sublime-packages:
+  - name: gruvbox
+    version: latest

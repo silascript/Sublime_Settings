@@ -1,5 +1,6 @@
 # 基础插件列表
 
 # 格式：name version
+# version 如果为latest为最新版本
 ChineseLocalization:latest 
 NeoVintageous:latest

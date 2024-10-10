@@ -1,0 +1,10 @@
+# 基础插件列表
+sublime-packages:
+  - name: ChineseLocalization
+    version: latest
+  - name: NeoVintageous
+    version: latest
+  - name: NeoVintageousHighlightLine
+    version: latest
+  - name: "A File Icon"
+    version: latest

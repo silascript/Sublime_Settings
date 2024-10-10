@@ -15,6 +15,144 @@ source ./subl_downpackage_new_func.sh
 
 # -----------------------函数定义----------------------- #
 
+# 读取包列表
+# 可多个参数
+# 每个参数都为插件文件列表文件
+# 至少要有一个参数，即至少给一个插件文件列表文件
+function read_package_list() {
+    # 读取包列表构建数组
+    # ["name1:version","name2:version"]
+
+    # 列表文件地址数组
+    # 可以传多个插件文件参数
+    # package_list 目录下的文件
+    local arg_list=($@)
+
+    # local default_plugin_list=".package_list/pklist_default.txt"
+
+    # 插件数组
+    local package_arr=()
+
+    # 循环参数列表
+    # 获取多个插件列表文件
+    if [[ $# -eq 0 ]]; then
+        echo -e "\e[93m请至少指定一个插件列表！\n \e[0m"
+    else
+        for file_tmp in "${arg_list[@]}"; do
+
+            # 读取插件列表
+            # 遍历插件列表获取每一个插件信息
+            if [[ -f $file_tmp ]]; then
+                # echo $file_tmp
+                for line in $(cat "$file_tmp" | grep -v "^$" | grep -v "^#"); do
+                    # 添加进数组中
+                    # echo "$line"
+                    package_arr+=("$line")
+                done
+            else
+                echo -e "\e[96m$file_tmp \e[93m文件不存在！\n \e[0m"
+            fi
+        done
+    fi
+
+    # 返回数组
+    # echo ${#package_arr[@]}
+    # 返回的数组元素格式：name:version 都名称和版本号用冒号:分隔
+    echo "${package_arr[@]}"
+}
+
+# 读取插件包列表yaml文件
+# 参数为插件的yaml文件
+# 此函数使用到 yaml 解析工具 yq
+function read_package_list_yml() {
+
+    # 列表文件地址数组
+    # 可以传多个插件文件参数
+    # package_list 目录下的文件
+    local arg_list=($@)
+
+    # 插件数组
+    local package_arr=()
+
+    # 循环参数列表
+    # 获取多个插件列表文件
+    if [[ $# -eq 0 ]]; then
+        echo -e "\e[93m请至少指定一个插件列表yaml文件！\n \e[0m"
+    else
+        for file_tmp in "${arg_list[@]}"; do
+
+            # 读取插件列表
+            # 遍历插件列表获取每一个插件信息
+            if [[ -f $file_tmp ]]; then
+                # echo $file_tmp
+
+                # cat package_list/pklist_basic.yml | yq -r '.sublime-packages.[]| select(.name=="NeoVintageous")
+                # cat package_list/pklist_basic.yml | yq -r '.sublime-packages.[]'
+                # cat package_list/pklist_basic.yml | yq -r '.sublime-packages.[] | .name'
+                # cat package_list/pklist_basic.yml | yq -r '.sublime-packages.[] | .version'
+
+                # 查询 依赖插件列表
+                # cat package_list/pklist_default.yml | yq -r '.dependence[]'
+
+                # 依赖 yaml 文件
+                local pk_dependence_yml_temp=$(cat "$file_tmp" | yq -r '.dependence[]')
+                # echo "$pk_dependence_yml_temp"
+                if [[ -n "$pk_dependence_yml_temp" ]]; then
+
+                    # 循环各 yaml 文件
+                    # cat "$file_tmp" | yq -r '.dependence[]' | while read line; do
+
+                    # IFS=$'\n' # 设置内部字段分隔符为换行符
+                    # 将字符串转成数组
+                    # local dependence_yml_arr=("$pk_dependence_yml_temp")
+                    # unset IFS # 恢复IFS为默认值
+                    #
+                    # local sub_pk_arr=($(read_package_list_yml "${dependence_yml_arr[@]}"))
+                    local sub_pk_arr=($(read_package_list_yml "$pk_dependence_yml_temp"))
+
+                    package_arr+=("${sub_pk_arr[@]}")
+
+                    # 遍历出yml中插件
+                    # for pk_temp in "${sub_pk_arr[@]}"; do
+                    #     package_arr+=("$pk_temp")
+                    # done
+
+                    # done
+
+                fi
+
+                # 添加进数组中
+                # echo "$line"
+                # package_arr+=("$line")
+                IFS=$'\n' # 设置内部字段分隔符为换行符
+                local pk_name_arr=($(cat "$file_tmp" | yq -r '.sublime-packages.[] | .name'))
+                local pk_version_arr=($(cat "$file_tmp" | yq -r '.sublime-packages.[] | .version'))
+
+                unset IFS # 恢复IFS为默认值
+
+                # 遍历两数组
+                for i in "${!pk_name_arr[@]}"; do
+                    local pk_name="${pk_name_arr[$i]}"
+                    local pk_version="${pk_version_arr[$i]}"
+
+                    # 将 名称:版本 字符串添加进返回数组
+                    package_arr+=("$pk_name":"$pk_version")
+
+                done
+            else
+                echo -e "\e[96m$file_tmp \e[93myaml文件不存在！\n \e[0m"
+            fi
+        done
+    fi
+
+    # echo "数组个数：${#package_arr[@]}"
+
+    # 返回数组
+    # echo ${#package_arr[@]}
+    # 返回的数组元素格式：name:version 都名称和版本号用冒号:分隔
+    echo "${package_arr[@]}"
+}
+
 # 解包
 # 参数1: 压缩包路径
 # 参数2: 缓存目录
@@ -168,6 +306,9 @@ function build_package() {
 
     # echo $PWD
 
+    # 返回 sublime-package 包名称
+    echo "$pkg_name.sublime-package"
+
 }
 
 # 安装插件
@@ -177,7 +318,47 @@ function install_core() {
 
 }
 
+# 批量安装
+# 参数：插件列表文件 可以有多个参数，即多个插件列表文件
+function install_batch() {
+
+    # 获取 包名:版本 字符串数组
+    local pkg_namev_arr=($(read_package_list "$@"))
+
+    # echo "${pkg_namev_arr[@]}"
+
+    echo -e "\e[96m批量安装插件... \e[0m"
+}
+
 # -----------------------执行区----------------------- #
+
+# 测试 读取插件列表文件函数
+# arr_1=($(read_package_list "$@"))
+# echo "${arr_1[@]}"
+
+# for pk_tmp in "${arr_1[@]}"; do
+#     echo $pk_tmp
+# done
+
+# echo "-----------------------------------------"
+
+# echo ${#arr_1[@]}
+# echo "${arr_1[@]}"
+# echo "${arr_1[0]}"
+# echo "${arr_1[1]}"
+
+# # s1="${arr_1[0]}"
+
+# echo $s1
+
+# 以:分隔符替换为空格
+# 然后切割字符串并构建成新数组
+# arr2=(${s1//:/ })
+
+# echo ${#arr2[@]}
+# echo "${arr2[@]}"
+# echo "${arr2[0]}"
+# echo "${arr2[1]}"
 
 # 测试 解包函数 unpackage
 
@@ -199,4 +380,16 @@ function install_core() {
 # 测试 构建包函数 build_package
 
 # build_package "NeoVintageous" "latest"
-# build_package "NeoVintageous" "1.34.2"
+# pkg_name=$(build_package "NeoVintageous" "1.34.2")
+# echo "$pkg_name"
+
+# ======================================== #
+
+# 测试 解析yaml 函数 read_package_list_yml
+# pk_list_arr_test=($(read_package_list_yml "./package_list/pklist_basic.yml"))
+# pk_list_arr_test=($(read_package_list_yml "./package_list/pklist_default.yml"))
+
+# echo "${pk_list_arr_test[@]}"
+
+# 测试 批量安装 函数
+# install_batch "./package_list/pklist_basic.txt"
