@@ -64,6 +64,7 @@ function read_package_list() {
 # 读取插件包列表yaml文件
 # 参数为插件的yaml文件
 # 此函数使用到 yaml 解析工具 yq
+# 返回 插件名:版本号 数组
 function read_package_list_yml() {
 
     # 列表文件地址数组
@@ -173,7 +174,7 @@ function unpackage() {
     # 缓存目录
     local cache_dir=$2
     # 如果没指定缓存目录则指定默认.Cache目录
-    if [[ -d "$cache_dir" ]]; then
+    if [[ -z "$cache_dir" ]]; then
         cache_dir=".Cache"
     fi
 
@@ -218,6 +219,7 @@ function unpackage() {
 # 参数1: 插件的名称
 # 参数2: 插件的版本号
 # 参数3: 插件包的下载url。可省，如果省，会通过参数1和参数2，即插件名称及版本号到json文件中解析出来
+# 返回 插件包名称：插件名.sublime-package 默认放在 .Cache 缓存目录下
 function build_package() {
 
     # 插件名称
@@ -314,6 +316,19 @@ function build_package() {
 # 安装插件
 function install_core() {
 
+    # 插件名称
+    local pkg_name=$1
+    # 版本号
+    local pkg_version=$2
+
+    # 缓存目录
+    local cache_dir=$3
+
+    # 如果没给缓存目录，就设置默认的.Cache目录
+    if [[ -z "$cache_dir" ]]; then
+        cache_dir=".Cache"
+    fi
+
     echo -e "\e[96m安装插件... \e[0m"
 
 }
@@ -366,9 +381,13 @@ function install_batch() {
 # 解析json
 # d_url=$(analysis_json "$pkg_name")
 # 下载
-# download_package "$d_url" ".Cache" "NeoVintageous.zip"
+# download_package "$d_url" "NeoVintageous.zip" ".Cache"
+# 不给第三个参数，即缓存目录
+# download_package "$d_url" "NeoVintageous.zip"
 # 解压
 # unpack_d=$(unpackage ".Cache/NeoVintageous.zip" ".Cache")
+# 不给第三个参数，即缓存目录
+# unpack_d=$(unpackage ".Cache/NeoVintageous.zip")
 # echo "解压后的目录为：$unpack_d"
 
 # 模拟一个没有只有一个根目录的压缩包解压

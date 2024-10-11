@@ -81,25 +81,25 @@ function analysis_json() {
 
 # 下载包
 # 参数1: 插件release包的url
-# 参数2: 下载的目标目录，即要下载包到哪个目录中。可省略，如果省略，设默认值为".Cache"
-# 参数3: 重命名下载文件的名称。可省。如果指定重命名的文件名，那参数2 下载目标目录也必须指定。
+# 参数2: 重命名下载文件的名称。可省。如果指定重命名的文件名，那参数2 下载目标目录也必须指定。
+# 参数3: 下载的目标目录，即要下载包到哪个目录中。可省略，如果省略，设默认值为".Cache"
 function download_package() {
 
     # 包的url
     local package_url=$1
 
-    # 下载到哪个目录
-    local target_dir=$2
-    if [[ -z $target_dir ]]; then
-        target_dir=".Cache"
-    fi
-
     # 重命名文件名
-    local dl_file_name=$3
+    local dl_file_name=$2
 
     if [[ $# -eq 0 ]]; then
         echo -e "\e[92m请指定插件包的url \n \e[0m"
         return 1
+    fi
+
+    # 下载到哪个目录
+    local target_dir=$3
+    if [[ -z $target_dir ]]; then
+        target_dir=".Cache"
     fi
 
     # 如果下载目标目录不存在则创建
@@ -143,6 +143,7 @@ function download_package() {
 
 # 测试不存在url
 # r_str=$(analysis_json "NeoVintageous" "1.34.1")
+# r_str=$(analysis_json "DoxyDoxygen (evolution)" "latest")
 # echo $r_str
 
 # 测试 下载函数 download_package
