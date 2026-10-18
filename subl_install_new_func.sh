@@ -321,6 +321,16 @@ function install_core() {
     # 版本号
     local pkg_version=$2
 
+    if [[ -z "$pkg_name" ]]; then
+        echo -e "\e[93m缺失插件名称，安装此插件失败... \n \e[0m"
+        return
+    fi
+
+    # 如果版本号为空 则设置默认值 latest
+    if [[ -z "$pkg_version" ]]; then
+        pkg_version="latest"
+    fi
+
     # 缓存目录
     local cache_dir=$3
 
@@ -329,7 +339,16 @@ function install_core() {
         cache_dir=".Cache"
     fi
 
-    echo -e "\e[96m安装插件... \e[0m"
+    # 解析json
+    # 参数1: 插件名
+    # 参数2: 版本号，如果省略，获取最新的
+    # 参数3: json 地址，可省略，默认设为https://packagecontrol.io/channel_v3.json
+    # 返回值: 插件release包的url地址，如果获取不到则返回"no_url"字样
+    local down_url=$(analysis_json "$pkg_name" "$pkg_version")
+
+    # 下载
+
+    # echo -e "\e[96m安装插件... \e[0m"
 
 }
 
