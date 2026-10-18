@@ -24,7 +24,9 @@ function subl_configdir_monitor() {
         local dirfile=$dir$file
         if [[ "$dir" =~ $dir_reg ]]; then
 
-            if [[ "$dirfile" == "$subl_config_dir/Lib/python38/package_control.py" && "$event" == "MODIFY" ]]; then
+			# 新版本更新要求 Python 3.14
+            # if [[ "$dirfile" == "$subl_config_dir/Lib/python38/package_control.py" && "$event" == "MODIFY" ]]; then
+            if [[ "$dirfile" == "$subl_config_dir/Lib/python314/package_control.py" && "$event" == "MODIFY" ]]; then
                 # 输出监视信息
                 echo -e "\e[92m$date - $time - $dir$file - $event \e[0m"
                 echo -e "\e[92m已经加载完 \e[96m$dirfile \e[92m文件！\n \e[0m"

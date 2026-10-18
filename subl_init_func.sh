@@ -100,6 +100,21 @@ function exists_packagecontrol_p38lib() {
 	echo "$is_exist"
 }
 
+# 检测 python3.14 的库文件是否存在
+# ~/.config/sublime-text/Lib/python314/目录下是否存在package_control.py文件
+# 新版本更新要求 Python 3.14
+function exists_packagecontrol_p314lib() {
+
+	# python314 目录路径
+	local p314lib_dir="$HOME/.config/sublime-text/Lib/python314"
+
+	local is_exist="y"
+
+	is_exist=$(exists_packagecontrol_lib "$p314lib_dir")
+
+	echo "$is_exist"
+}
+
 # Package Control 监视器
 # function packagecondtrol_monitor() {
 
@@ -185,9 +200,14 @@ function init_main() {
 
 # echo -e "\e[96m 请自行重启 Sublime Text! \e[0m"
 
+# ------------------------------------------------------------------ #
+
 # 测试 检测lib库文件是否存在函数
 # is_e=$(exists_packagecontrol_p38lib)
+# is_e=$(exists_packagecontrol_p314lib)
 # echo "$is_e"
+
+# ------------------------------------------------------------------ #
 
 # 测试获取 sublime 的pid
 # st_pid=$(pidof sublime_text)
