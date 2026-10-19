@@ -130,6 +130,16 @@ function install_packagecontrol() {
 	local subldir=$HOME/.config/sublime-text/'Installed Packages'
 	# Package Control 包路径
 	local pcfile=$subldir/'Package Control.sublime-package'
+
+	# Package Control 包下载地址
+	local pcfile_down_url=$1
+
+	# 检测参数
+	if [[ $# -eq 0 ]]; then
+		echo -e "\e[93m请提供Package Contron 包的下载地址！\e[96m \n \e[0m"
+		return 1
+	fi
+
 	#echo $pcfile
 
 	if [ ! -f "$pcfile" ]; then
@@ -142,7 +152,21 @@ function install_packagecontrol() {
 
 		#wget -P ~/.config/sublime-text/Installed\ Packages/ 'https://packagecontrol.io/Package Control.sublime-package'
 
-		wget -P "$subldir" 'https://packagecontrol.io/Package Control.sublime-package'
+		# 获取下载文件的文件名
+		local dl_file_name=$(basename "$pcfile_down_url")
+		if [[ "$dl_file_name" != "Package Control.sublime-package" ]]; then
+			# wget -O 可以重命名，但目录必须存在
+			if [[ ! -d $subldir ]]; then
+				echo -e "\e[93m$subldir \e[96m目录不存在！Package Contron 安装失败！\e[96m \n \e[0m"
+				return 1
+			fi
+			wget -O "$pcfile" "$pcfile_down_url"
+		else
+			# wget -P 指定要下载到目录，目录如果不存在，会自动创建
+			# packagecontrol.io上的Pakcage Control 包太老不建议使用
+			# wget -P "$subldir" 'https://packagecontrol.io/Package Control.sublime-package'
+			wget -P "$subldir" "$pcfile_down_url"
+		fi
 
 		# 判断 Package Contronl.sublime-package 文件是否下载成功
 		if [[ -f $pcfile ]]; then
@@ -168,8 +192,17 @@ function init_main() {
 	# 重置
 	resetAll
 
+	# Package Control 下载及安装
+	# Package Control 包下载地址
+	local pc_down_url=$1
 	# 安装 Package Control
-	install_packagecontrol
+	# install_packagecontrol
+	install_packagecontrol $pc_down_url
+	# local packagecontrol_install_result=$?
+	if [ $? -eq 1 ]; then
+		echo -e "\e[92mPackage Control 安装失败！\n \e[0m"
+		return
+	fi
 
 	# 复制 全局默认 settings
 	# subl_cp_settings default_settings.json

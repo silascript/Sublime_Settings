@@ -14,7 +14,22 @@ source ./subl_init_func.sh
 
 #---------------------------主代码区--------------------------#
 
+function init_subl() {
+
+	# Package Control 下载地址
+	local pc_down_url=$1
+
+	# 如果没有提供 Package Control 下载地址
+	# 则使用此地址：https://download.sublimetext.com/Package%20Control.sublime-package
+	if [ $# -eq 0 ]; then
+		pc_down_url="https://download.sublimetext.com/Package%20Control.sublime-package"
+	fi
+	# 初始化主函数
+	# 要提供Package Control 包下载地址
+	init_main "$pc_down_url"
+
+}
+
 # -------------------------------执行区#------------------------------- #
 
-# 初始化主函数
-init_main
+init_subl "$@"
