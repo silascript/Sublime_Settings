@@ -1,6 +1,30 @@
 // Settings in here override those in "LSP-jdtls/LSP-jdtls.sublime-settings"
 {
+	// "version": "1.58.0",
+	"version": "1.60.0",
+	// "version": "1.61.0",
 	"settings": {
 		"java.codeGeneration.generateComments": true,
+
+		"java.configuration.runtimes": [
+			{
+				"name": "JavaSE-1.8",
+				"path": "/home/silascript/.sdkman/candidates/java/8.0.504+1-tem"
+			},
+			{
+				"name": "JavaSE-17",
+				"path": "/home/silascript/.sdkman/candidates/java/17.0.21.0+9-tem"
+			},
+			{
+				"name": "JavaSE-21",
+				"path": "/home/silascript/.sdkman/candidates/java/21.0.13.0+9-tem",
+				 "default": true
+			},
+			{
+				"name": "JavaSE-25",
+				"path": "/home/silascript/.sdkman/candidates/java/25.0.5.0+8-tem",
+				// "default": true
+			}
+		]
 	}
 }
