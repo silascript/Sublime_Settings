@@ -1,0 +1,35 @@
+{
+	// 代理设置
+	"http_proxy":"http://127.0.0.1:7890",
+	"https_proxy": "http://127.0.0.1:7890",
+	"installed_packages":
+	[
+	"Catppuccin color schemes",
+	"DoxyDoxygen",
+	"Emmet",
+	"Gruvbox Material Theme",
+	"Icons - Catppuccin",
+	"LSP",
+	"LSP-bash",
+	"LSP-css",
+	"LSP-dockerfile",
+	"LSP-file-watcher-rust",
+	"LSP-gopls",
+	"LSP-html",
+	"LSP-jdtls",
+	"LSP-json",
+	"LSP-lemminx",
+	"LSP-lua",
+	"LSP-taplo",
+	"LSP-typescript",
+	"LSP-yaml",
+	"NeoVintageous",
+		"Package Control",
+		"Pretty Shell",
+		"SideBarEnhancements",
+		"Terminus",
+	],
+	"in_process_packages":
+	[
+	],
+}
